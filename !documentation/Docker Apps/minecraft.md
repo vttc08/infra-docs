@@ -136,4 +136,4 @@ enable-proxy-connections: true
 
 Now client can play without login to Xbox or Java.
 
-[**WorldGuard**](https://dev.bukkit.org/projects/worldguard)
+[**WorldGuard**](https://dev.bukkit.org/projects/worldguard)

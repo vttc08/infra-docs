@@ -43,7 +43,8 @@ More sample media
 [Portainer](https://portainer.io) is a software for <span style="background-color: rgb(224, 62, 45);">managing </span>doc<span style="color: rgb(132, 63, 161);">k</span>er<span style="color: rgb(35, 111, 161);"> container</span>s.
 
 # Audiobookshelf
-Audiobooks and podcasts.
+
+Audiobooks and podcasts.
 
 Docker-compose, place it in the media apps compose media.yml
 
@@ -130,5 +131,8 @@ ffmpeg -i input.mp4 -af silenceremove=stop_periods=-1:stop_duration=4:stop_thres
 - stop\_periods = -1 (search for the entire audio track)
 
 Use edge\_reader.py to utilize Edge AI reader to read the audiobook if only the pdf book is provided.
-After reading, put all the recorded files and pdf in the project folder and run processing.py twice.
-
+
+After reading, put all the recorded files and pdf in the project folder and run processing.py twice.
+
+
+

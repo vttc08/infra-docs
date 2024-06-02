@@ -68,17 +68,19 @@ This docker-compose file use the environment file fgc.env as indicated above and
 
 This should no longer be needed. Edit the line to [epicgames.js](https://github.com/vogler/free-games-claimer/blob/5919d37efaabad98c303e087c4874cffb58b3cb9/epic-games.js#L231) code and replace with the following message. When the captcha is missed, it will send a notification for manual claiming.
 
-```javascriptwait notify(`epic-games: got captcha challenge right before claim. Use VNC to solve it manually. Game link: \n ${url}`)
+```javascript
+wait notify(`epic-games: got captcha challenge right before claim. Use VNC to solve it manually. Game link: \n ${url}`)
 ```
 
 <s>EpicGames require a captcha to claim free games. If the 5 minute timeout window for EpicGames is missed, it is no longer possible to claim the games unless waiting for the next day, which due to the nature of discord notifications, there is a slim to none chance of catching the captcha at next day. To continuing claiming after acknowledging the missed session, use portainer, ConnectBot Android to temporarily restart the container to restore VNC session.</s>
 
 <s>In order to restore the default time of claiming the games. Eg. waking up on Thurs or Fri and a predictable time and claim games, use the linux at command.</s>
 
-```basht 9:20
+```bash
+t 9:20
 > docker restart FGC
 > <EOT>
 
 ```
 
-<s>This will run the command at 9:20 AM the next day. Ctrl-D to exit at prompt and verify the time is correct.</s>
+<s>This will run the command at 9:20 AM the next day. Ctrl-D to exit at prompt and verify the time is correct.</s>
