@@ -1,0 +1,107 @@
+site_name: Documentation # Change this to your site name
+site_description: Personal documentation site for collection of home server and networking hardware and configurations, created in obsidian and published in mkdocs.
+site_author: Kevin
+repo_name: squidfunk/mkdocs-material
+repo_url: https://github.com/squidfunk/mkdocs-material
+
+docs_dir: "!documentation"
+
+theme:
+  name: 'material'
+  custom_dir: 'overrides'
+  highlightjs: true
+  icon:
+    logo: material/book
+  favicon: assets/favicon.svg
+  features:
+    - content.code.copy
+    - content.footnote.tooltips
+    - navigation.tabs
+    - navigation.footer
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.expand
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+  language: en
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue 
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+    
+
+plugins:
+  - roamlinks
+  - callouts
+  - search
+  - minify:
+      minify_html: true
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+      enable_creation_date: true
+
+extra:
+  generator: true
+  social: 
+    - icon: fontawesome/brands/github
+      link: https://github.com/vttc08
+    - icon: fontawesome/solid/globe
+      link: https://github.com/vttc08
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/u/vttc08
+copyright: Copyright &copy; 2024
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.betterem
+  - pymdownx.keys
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.highlight:
+      use_pygments: true
+      pygments_lang_class: true
+      linenums: true
+      linenums_style: pymdownx-inline
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.smartsymbols
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+  - tables
+  - abbr
+  - def_list
+  - attr_list
+  - footnotes
+  - nl2br
+  - smarty
+  - mdx_breakless_lists
+  - pymdownx.magiclink
+  - toc:
+      permalink: true
+      title: On this page
