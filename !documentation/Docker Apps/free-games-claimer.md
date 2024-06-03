@@ -1,6 +1,6 @@
 ---
 date: 2023-09-23T05:03:35.000000Z
-update: 2024-05-29T01:29:47.000000Z
+update: 2024-06-01T22:58:05-07:00
 comments: "true"
 ---
 # Free Games Claimer
@@ -9,7 +9,7 @@ comments: "true"
 
 This is the Github repo for the new and advanced free games claimer. This is implemented after Epicgames FreeGames keeps failing.
 
-**Configuration**
+### **Configuration**
 
 Using Docker-Compose
 
@@ -64,7 +64,7 @@ services:
 
 This docker-compose file use the environment file fgc.env as indicated above and runs once every day. It also contains VNC server/web based client.
 
-**Missing Captcha Session**
+### **Missing Captcha Session**
 
 This should no longer be needed. Edit the line to [epicgames.js](https://github.com/vogler/free-games-claimer/blob/5919d37efaabad98c303e087c4874cffb58b3cb9/epic-games.js#L231) code and replace with the following message. When the captcha is missed, it will send a notification for manual claiming.
 
