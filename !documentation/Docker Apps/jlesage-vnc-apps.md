@@ -7,7 +7,7 @@ comments: "true"
 
 VNC apps consists of [desktop applications](https://jlesage.github.io/docker-apps/) that have the GUI in a web browser, mostly from the creator [jlesage](https://github.com/jlesage?tab=repositories).
 
-t least for apps from jlesage, it supports an environment variable. Create an environment file called `vnc.env`
+At least for apps from jlesage, it supports an environment variable. Create an environment file called `vnc.env`
 
 The environment file can be reference in many docker images from jlesage using docker-compose. The current environment variable specify U/GID, time zone and make every app dark mode. It is also possible to set VNC passwords. This is the [full list of environment variables](https://github.com/jlesage/docker-baseimage-gui#environment-variables).
 
