@@ -1,0 +1,35 @@
+name: Deploy to Oracle Cloud
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout the current branch
+        uses: actions/checkout@v3 # checkout the repo
+        with:
+          ref: gh-pages
+
+      - name: Initialize the ssh-agent # configure ssh private key
+        uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.ORACLE_YUL_KEY }}
+  
+  # SSH keyscan to avoid error
+      - name: Scan the host key
+        run: mkdir -p ~/.ssh/ && ssh-keyscan -H $DEPLOY_SERVER >> ~/.ssh/known_hosts
+        env:
+          DEPLOY_SERVER: ${{ secrets.ORACLE_YUL_IP }}
+  
+  # Runs the rsync command to the remote site (caddy reverse proxy)
+      - name: Deploy the website
+        run: >-
+          rsync -avx --delete --exclude '.ssh' . $DEPLOY_USERNAME@$DEPLOY_SERVER:./caddy/www
+        env:
+          DEPLOY_SERVER: ${{ secrets.ORACLE_YUL_IP }}
+          DEPLOY_USERNAME: ubuntu
