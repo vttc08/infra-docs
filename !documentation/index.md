@@ -1,6 +1,7 @@
 # Home
 ### Recent Updates
 
+- [Audiobookshelf](audiobookshelf.md)
 - [jlesage VNC Apps](jlesage-vnc-apps.md)
 - [Basic Server Setup, Caddy, Docker, JDownloader](basic-server-setup-caddy-docker-jdownloader.md)
 - [Mkdocs](mkdocs.md)
@@ -10,4 +11,3 @@
 - [Debian-Based Server Setup](debian-based-server-setup.md)
 - [Samba(SMB) Setup](sambasmb-setup.md)
 - [Useful Plugins](useful-plugins.md)
-- [Minecraft Prep and Install](minecraft-prep-and-install.md)

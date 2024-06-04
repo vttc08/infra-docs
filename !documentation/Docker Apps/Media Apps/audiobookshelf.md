@@ -1,6 +1,6 @@
 ---
 date: 2023-02-11T21:53:20.000000Z
-update: 2023-12-20T06:41:23.000000Z
+update: 2024-06-03T22:52:26-07:00
 comments: "true"
 ---
 # Audiobookshelf
@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
 ```
 
-**Using the software**
+## Usage
 
 To add a library, go to settings, libraries and add the path as mounted in docker.
 
@@ -35,7 +35,7 @@ Go to Users, change the root password and create a new user. Note, the user cann
 
 ![](assets/gallery/2023-02/FI4image.png)
 
-**Adding Media**
+#### **Adding Media**
 
 Make sure the contents are in a separate folder. Follow naming like this. A cover image can also be created. The best bitrate should be under 128 kbps for smooth playback.
 
@@ -56,15 +56,14 @@ If the media does not match or not have an image, go click the edit icon, go to 
 
 If the chapter does not match, chapters can be edited manually. Go to Chapter and Lookup.
 
-**Mobile App**
-
+#### **Mobile App**
 **[https://play.google.com/store/apps/details?id=com.audiobookshelf.app](https://play.google.com/store/apps/details?id=com.audiobookshelf.app)**
 
 Mobile app also has download functionality, however, the directory cannot be changed, the default for download is /Internal Storage/Download/{Podcast or Audiobook}
 
 The statistic of minutes listened is the actual minutes listened, not the minutes of audiobook progress listened (eg. playing at faster speed).
 
-**Scripting (Windows)**
+##### **Scripting (Windows)**
 
 ffmpeg detect audio silence (for splitting a large audio file into multiple chapters)
 
