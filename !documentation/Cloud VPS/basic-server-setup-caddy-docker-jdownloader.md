@@ -1,6 +1,6 @@
 ---
 date: 2023-01-11T04:54:20.000000Z
-update: 2024-06-01T17:58:09-07:00
+update: 2024-06-03T22:40:50-07:00
 comments: "true"
 ---
 # Basic Server Setup, Caddy, Docker, JDownloader
@@ -171,7 +171,7 @@ netstat -tln
 
 ![](assets/gallery/2023-01/ZjUimage.png)
 
-The configuration for JDownloader is complete and should appear and be functional in WebUI. [Advanced JDownloader](/!documentation/Cloud%20VPS/jdownloader) documentation will be covered in detailed in another section. It is recommended to close port 5800 after configuring to prevent others accessing.
+The configuration for JDownloader is complete and should appear and be functional in WebUI. [Advanced JDownloader](jdownloader.md) documentation will be covered in detailed in another section. It is recommended to close port 5800 after configuring to prevent others accessing.
 
 **Basic Caddy Syntax (if applicable)**
 

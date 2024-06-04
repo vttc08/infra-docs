@@ -8,6 +8,7 @@ comments: "true"
 - ![](assets/Pasted%20image%2020240531235503.png)
 - when referencing a subheading in another file, mkdocs uses `[](file.md#heading-with-space)` while obsidian uses `[](file.md#heading%20with%20space)`
 - Before switching from lists to normal content, a line break is needed, otherwise the text below will be rendered with a indent
+- mkdocs subheadings `[](#subheadings)` must be in lower case
 
 ### Admonition/Callouts
 
