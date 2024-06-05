@@ -1,11 +1,11 @@
 ---
 date: 2023-02-11T21:53:20.000000Z
-update: 2024-06-03T22:52:26-07:00
+update: 2024-06-03T23:04:51-07:00
 comments: "true"
 ---
 # Audiobookshelf
 
-Audiobooks and podcasts.
+Audiobooks and podcasts. 
 
 Docker-compose, place it in the media apps compose media.yml
 

@@ -1,6 +1,6 @@
 ---
 date: 2023-09-23T05:03:35.000000Z
-update: 2024-06-01T22:58:05-07:00
+update: 2024-06-05T14:54:40-07:00
 comments: "true"
 ---
 # Free Games Claimer
@@ -75,9 +75,9 @@ wait notify(`epic-games: got captcha challenge right before claim. Use VNC to so
 <s>EpicGames require a captcha to claim free games. If the 5 minute timeout window for EpicGames is missed, it is no longer possible to claim the games unless waiting for the next day, which due to the nature of discord notifications, there is a slim to none chance of catching the captcha at next day. To continuing claiming after acknowledging the missed session, use portainer, ConnectBot Android to temporarily restart the container to restore VNC session.</s>
 
 <s>In order to restore the default time of claiming the games. Eg. waking up on Thurs or Fri and a predictable time and claim games, use the linux at command.</s>
-
+~~Need to install `at` using `apt`.
 ```bash
-t 9:20
+at 9:20
 > docker restart FGC
 > <EOT>
 
