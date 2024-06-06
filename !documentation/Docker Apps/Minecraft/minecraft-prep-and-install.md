@@ -1,6 +1,6 @@
 ---
 date: 2023-12-22T03:54:36.000000Z
-update: 2024-01-10T03:03:49.000000Z
+update: 2024-06-05T19:55:22-07:00
 comments: "true"
 ---
 # Minecraft Prep and Install
@@ -50,7 +50,7 @@ services:
 
 This downloads the latest version of Minecraft, to use another PaperMC version, need to build the image from scratch.
 
-Warning: <span style="color: rgb(224, 62, 45);">PaperMC cannot be downgraded</span>, only newerversion of PaperMC can be installed after first run.
+Warning: <span style="color: rgb(224, 62, 45);">PaperMC cannot be downgraded</span>, only newer version of PaperMC can be installed after first run.
 
 ```shell
 git clone https://github.com/mtoensing/Docker-Minecraft-PaperMC-Server

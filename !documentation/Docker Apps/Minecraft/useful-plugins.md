@@ -1,6 +1,6 @@
 ---
 date: 2024-01-05T08:56:01.000000Z
-update: 2024-01-10T03:07:32.000000Z
+update: 2024-06-05T19:56:07-07:00
 comments: "true"
 ---
 # Useful Plugins
@@ -22,7 +22,7 @@ enforce-whitelist=false
 online-mode=false
 ```
 
-Refer to [Minecraft Prep and Install](/Docker%20Apps/minecraft-prep-and-install "Minecraft Prep and Install") to install offline client.
+Refer to  [Minecraft Prep and Install](minecraft-prep-and-install.md) to install offline client.
 
 For bedrock compatibility, need the geyser plugin.
 

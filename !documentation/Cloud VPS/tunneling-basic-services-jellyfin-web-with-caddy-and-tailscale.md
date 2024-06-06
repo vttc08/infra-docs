@@ -1,6 +1,6 @@
 ---
 date: 2023-01-11T05:29:11.000000Z
-update: 2023-01-13T06:35:09.000000Z
+update: 2024-06-05T19:51:24-07:00
 comments: "true"
 ---
 # Tunneling Basic Services (Jellyfin, Web) with Caddy and Tailscale
@@ -50,8 +50,7 @@ curl http://100.x.y.z:8096
 ```
 
  **Reverse Proxy**
-
-[/Cloud%20VPS/basic-server-setup-caddy-docker-jdownloader](/Cloud%20VPS/basic-server-setup-caddy-docker-jdownloader)
+[basic-server-setup-caddy-docker-jdownloader](basic-server-setup-caddy-docker-jdownloader.md)
 
 Caddy installation and syntax is can be found on this page. Replace 127.0.0.1 with the tailscale IP address.
 
@@ -71,7 +70,7 @@ It is possible to set use the root domain (yoursub.duckdns.org) or a subfolder d
 sudo systemctl reload caddy
 ```
 
-Use netstat to check port 80, 443 is being listened. Make sure to [port forward](/Cloud%20VPS/basic-server-setup-caddy-docker-jdownloader#bkmrk-alternative-%28firewal) Oracle VPS.
+Use netstat to check port 80, 443 is being listened. Make sure to [port forward](basic-server-setup-caddy-docker-jdownloader) Oracle VPS.
 
 **Other Services**
 
