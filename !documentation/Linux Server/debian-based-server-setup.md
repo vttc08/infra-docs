@@ -1,6 +1,6 @@
 ---
 date: 2023-09-02T19:44:45.000000Z
-update: 2024-05-18T21:47:34.000000Z
+update: 2024-06-07T01:22:47-07:00
 comments: "true"
 ---
 # Debian-Based Server Setup
@@ -106,7 +106,7 @@ The key is ready to use for authorization.
 
 **Setting Up SMB**
 
-Refer to [Samba(SMB) Setup](/Linux%20Server/sambasmb-setup "Samba(SMB) Setup") to setup SMB server.
+Refer to [Samba(SMB) Setup](sambasmb-setup.md) to setup SMB server.
 
 **Desktop Environment Setup**
 

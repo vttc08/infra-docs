@@ -1,6 +1,6 @@
 ---
 date: 2023-01-11T05:29:11.000000Z
-update: 2024-06-05T19:51:24-07:00
+update: 2024-06-07T01:25:12-07:00
 comments: "true"
 ---
 # Tunneling Basic Services (Jellyfin, Web) with Caddy and Tailscale
@@ -70,7 +70,7 @@ It is possible to set use the root domain (yoursub.duckdns.org) or a subfolder d
 sudo systemctl reload caddy
 ```
 
-Use netstat to check port 80, 443 is being listened. Make sure to [port forward](basic-server-setup-caddy-docker-jdownloader) Oracle VPS.
+Use netstat to check port 80, 443 is being listened. Make sure to [port forward](basic-server-setup-caddy-docker-jdownloader.md) Oracle VPS.
 
 **Other Services**
 
