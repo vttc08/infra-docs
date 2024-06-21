@@ -1,8 +1,8 @@
 site_name: Documentation # Change this to your site name
 site_description: Personal documentation site for collection of home server and networking hardware and configurations, created in obsidian and published in mkdocs.
 site_author: Kevin
-repo_name: squidfunk/mkdocs-material
-repo_url: https://github.com/squidfunk/mkdocs-material
+repo_name: vttc08/infra-docs
+repo_url: https://github.com/vttc08/infra-docs
 
 docs_dir: "!documentation"
 
