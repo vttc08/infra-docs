@@ -1,6 +1,6 @@
 ---
 date: 2023-09-02T19:44:45.000000Z
-update: 2024-06-09T20:34:41-07:00
+update: 2024-06-26T22:34:24-07:00
 comments: "true"
 ---
 # Debian-Based Server Setup
@@ -25,7 +25,7 @@ Powersave governor and at reboot. Remember to run the command again
 Ensure these packages are installedi
 
 ```bash
-powertop htop iotop fio curl gnupg wget ntfs-3g neofetch ca-certificates lsb-release hdparm hd-idle openssh-server
+powertop htop iotop fio curl gnupg wget ntfs-3g neofetch ca-certificates lsb-release hdparm hd-idle openssh-server at
 ```
 
 **HDD**

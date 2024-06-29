@@ -1,6 +1,6 @@
 ---
 comments: "true"
-update: 2024-06-05T20:20:54-07:00
+update: 2024-06-28T22:14:32-07:00
 ---
 # Mkdocs
 ### Mkdocs Gotchas
@@ -30,10 +30,10 @@ Obsidian callouts requires the plugin `mkdocs-callouts`
 > >callout
 
 ```
-> [!notes] Callout title
+> [!notes]+/- Callout title
 > Callout content
 ```
-- obsidian callout syntax also follows the same `+`,`-` for collapsing
+- obsidian callout syntax also follows the same `+`,`-` for collapsing, it is to be inserted after the brackets
 
 Available callouts include `notes`, `info`, `warning`, `danger`, `success`, `failure`, `example`, `abstract`, `tip`, `question`, `bug`. 
 ![](assets/Pasted%20image%2020240601000413.png)
