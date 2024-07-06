@@ -15,6 +15,7 @@ All `docker-compose.yml` files are stored in `~/docker` folder, which then by de
 	- it is preferable for apps to live in same network, eg. `teslamate`
 	- a large app requiring multiple containers eg. `frontend`, `mysql` etc..
 	- apps share similar/same [category](#Categories), such as `qBittorrent` and `nzbget` can be put together in `downloader.yml` even though they do not have common properties or require same networking
+
 ##### Storage
 The storage used for all containers are bind mount.
 - application configs are stored in `~/docker/[app]`
