@@ -1,6 +1,6 @@
 ---
 date: 2023-09-19T21:15:30.000000Z
-update: 2024-01-10T03:01:30.000000Z
+update: 2024-07-01T13:35:44-07:00
 comments: "true"
 ---
 # OliveTin
@@ -18,7 +18,7 @@ sudo dpkg -i OliveTin…​deb
 sudo systemctl enable --now OliveTin
 ```
 
-**Configuration**
+### Configuration
 
 The configuration file is located at `<em>/etc/OliveTin/config.yaml </em>`
 
@@ -53,7 +53,7 @@ Execute a shell command with textbox input.
       type: ascii
 ```
 
-- use {{ }} and give a variable
+- use `{{ }}` and give a variable
 - under arguments type, assign a type for it, ascii only allows letters and numbers
 
 Execute a shell command with choices
@@ -74,7 +74,7 @@ Execute a shell command with choices
 
 This example give choices to start or stop a docker stack of a docker-compose file. If a argument is given the parameter choices, it will be in dropdown mode.
 
-**Icons Customization**
+### Icons Customization
 
 The icons need to be placed in a folder in */var/www/\[icon-folder\]/icon.png.* To use the icons, offline image or web address, it should be in HTML format. The size of 48px is the default size of OliveTin icons. Other CSS options such as `<em>style="background-color: white;"</em>` also works.
 
@@ -90,13 +90,13 @@ For example, `&#9786;` <span class="symbol-main__title--symbl">😊.</span>
 icon: "&#9786;"
 ```
 
-**Icon Management**
+#### Icon Management
 
 The default icon folder is `/var/www/olivetin/icons`
 
 The icon folder of all homelab icons is in `~/icons/homelab`
 
-**API**
+### API
 
 Simple action button.
 

@@ -1,6 +1,6 @@
 ---
 date: 2024-05-07T18:06:07.000000Z
-update: 2024-05-07T18:11:58.000000Z
+update: 2024-07-01T13:34:00-07:00
 comments: "true"
 ---
 # Samba(SMB) Setup
@@ -37,3 +37,5 @@ Lastly, add the user and password for the SMB share
 ```bash
 sudo smbpasswd -a $USER # enter the password twice
 ```
+
+In the case when Windows fail to write files in the samba share for odd reason. Go to `Manage Credentials` -> `Windows Credentials` -> `Add a Windows Credential` and fill the necessary address, username and password.
