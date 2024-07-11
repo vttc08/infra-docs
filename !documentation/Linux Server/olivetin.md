@@ -1,6 +1,6 @@
 ---
 date: 2023-09-19T21:15:30.000000Z
-update: 2024-07-10T18:38:21-07:00
+update: 2024-07-10T18:43:56-07:00
 comments: "true"
 ---
 # OliveTin
@@ -197,7 +197,7 @@ curl -X POST 'http://mediaserver:1378/api/StartAction' -d '{"actionId": "Rename 
 >
 
 ### Dashboard
-Dashboard are a separate page from the default OliveTin page, [Fieldsets](#Fieldsets) and [Folders](#Folders) are allowed to group actions only in dashboard.
+Dashboard are a separate page from the default OliveTin page, [Fieldsets](#fieldsets) and [Folders](#folders) are allowed to group actions only in dashboard.
 - when an action is in dashboards, it does not appear in main view.
 - when refreshing the page, it will always go back to main view even if the page is currently at a dashboard
 ```yaml
@@ -226,11 +226,11 @@ dashboards:
 
 - it is possible to use custom icons or title for folders as long as `type: ` is not set and it has `contents: `
 ### Entities
-To use entities, an [action](#entity%20actions), a [dashboard](#dashboard) [entry](#dashboard%20entry), entities json/yaml [file](#entities.json) and entity update method is needed (when the action interact with the entity).
+To use entities, an [action](#entity-actions), a [dashboard](#dashboard) [entry](#dashboard-entry), entities json/yaml [file](#entities-file) and entity update method is needed (when the action interact with the entity).
 >[!info]- Preview of Entities Flowchart
 >![](assets/new.drawio.png)
-#### entities.json
-It's also possible to use [YAML](https://docs.olivetin.app/entities-yaml.html)
+#### entities-file
+It's  possible to use [json](https://docs.olivetin.app/entities-json.html) or  [YAML](https://docs.olivetin.app/entities-yaml.html)
 ```yaml
 entities:
   - file: /etc/OliveTin/entities/containers.json
@@ -248,8 +248,8 @@ entities:
   execOnCron: '*/5 * * * *'
 ```
 
-- this is an action that is trigger by other actions that need to modify the entity, the purpose is to update [the entity file](#entities.json)
-#### entity actions
+- this is an action that is trigger by other actions that need to modify the entity, the purpose is to update [the entity file](#entities-file)
+#### entity-actions
 ```yaml
 - title: Check {{ container.Names }} Status
   shell: echo {{ container.Status }}
@@ -261,7 +261,7 @@ The entity action is defined the same way as other actions.
 - `entity` need to be defined
 - `trigger` automatically update entity attributes (since executing this actions could change some attribute of an entity like starting a container)
 - both title and shell can use `entity.attributes`
-#### dashboard entry
+#### dashboard-entry
 ```yaml
  - title: CPanel
     contents:
@@ -276,4 +276,4 @@ The entity action is defined the same way as other actions.
 ```
 >[!notes]- Preview
 >![](assets/Pasted%20image%2020240710174307.png)
-- dashboard is the same configuration as in [previous](#Dashboard) but now is able to utilize entities. 
+- dashboard is the same configuration as in [previous](#dashboard) but now is able to utilize entities. 

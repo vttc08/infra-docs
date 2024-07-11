@@ -1,6 +1,6 @@
 ---
 date: 2024-07-05 17:59
-update: 2024-07-05T22:56:49-07:00
+update: 2024-07-10T18:44:09-07:00
 comments: "true"
 ---
 # 01 Docker Infrastructure
@@ -14,7 +14,7 @@ All `docker-compose.yml` files are stored in `~/docker` folder, which then by de
 	- the apps share common properties such as `arrs` apps
 	- it is preferable for apps to live in same network, eg. `teslamate`
 	- a large app requiring multiple containers eg. `frontend`, `mysql` etc..
-	- apps share similar/same [category](#Categories), such as `qBittorrent` and `nzbget` can be put together in `downloader.yml` even though they do not have common properties or require same networking
+	- apps share similar/same [category](#categories), such as `qBittorrent` and `nzbget` can be put together in `downloader.yml` even though they do not have common properties or require same networking
 
 ##### Storage
 The storage used for all containers are bind mount.

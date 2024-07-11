@@ -1,11 +1,12 @@
 ---
 comments: "true"
-update: 2024-06-28T22:14:32-07:00
+update: 2024-07-10T18:47:00-07:00
 ---
 # Mkdocs
 ### Mkdocs Gotchas
 - `yaml` highlighting is broken with `mdx-breakless-lists`
 - when using heading `#`, if there are no line breaks between headings, any lists that is after content of the second heading will not be rendered properly, even with `mdx-breakless-lists`
+- furthermore, if using lists right after a `yaml` code block, the list will also not be rendered correctly
 - ![](assets/Pasted%20image%2020240531235503.png)
 - when referencing a subheading in another file, mkdocs uses `[](file.md#heading-with-space)` while obsidian uses `[](file.md#heading%20with%20space)`
 - Before switching from lists to normal content, a line break is needed, otherwise the text below will be rendered with a indent
