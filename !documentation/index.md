@@ -1,6 +1,7 @@
 # Home
 ### Recent Updates
 
+- [Webtop (openbox-ubuntu)](webtop.md)
 - [Mkdocs](mkdocs.md)
 - [01 Docker Infrastructure](01 docker-infra.md)
 - [OliveTin](olivetin.md)
@@ -10,4 +11,3 @@
 - [Filebrowser](filebrowser.md)
 - [Debian-Based Server Setup](debian-based-server-setup.md)
 - [Tunneling Basic Services (Jellyfin, Web) with Caddy and Tailscale](tunneling-basic-services-jellyfin-web-with-caddy-and-tailscale.md)
-- [Useful Plugins](useful-plugins.md)
