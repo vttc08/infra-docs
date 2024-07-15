@@ -1,3 +1,8 @@
+---
+date: 2024-01-23 08:35
+update: 2024-07-15T13:45:38-07:00
+comments: "true"
+---
 # Webtop (openbox-ubuntu)
 
 ```yaml
@@ -27,7 +32,7 @@ services:
 The default installation with config folder copied is not usable. Packages to be installed
 ```python
 apt update
-apt install wget terminator rsync ntp spacefm compton tint2 nitrogen nano lxappearance mousepad unrar unzip xarchiver mono-complete libhunspell-dev p7zip libmpv-dev tesseract-ocr vlc ffmpeg fonts-wqy-zenhei language-pack-zh-hans mediainfo mediainfo-gui
+apt install wget terminator rsync ntp spacefm compton tint2 nitrogen nano lxappearance mousepad unrar unzip xarchiver mono-complete libhunspell-dev p7zip libmpv-dev tesseract-ocr vlc ffmpeg fonts-wqy-zenhei language-pack-zh-hans mediainfo mediainfo-gui p7zip
 ```
 
 Packages that has to be installed manually

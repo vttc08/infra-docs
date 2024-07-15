@@ -1,6 +1,6 @@
 ---
 date: 2023-11-09T04:10:51.000000Z
-update: 2024-06-03T22:49:04-07:00
+update: 2024-07-15T13:48:36-07:00
 comments: "true"
 ---
 # jlesage VNC Apps
@@ -45,18 +45,20 @@ This is an example of VNC container of MKVToolNix. The vnc.yml file is backed up
 
 The application port start from 5800/5900 for its corresponding access and add 10 for each application.
 
-JDownloader: 5800
+**JDownloader**: 5800
 
-Firefox: 5810
+**Firefox**: 5810
 
-MKVToolNix: 5820
+**MKVToolNix**: 5820
 
-MKVCleaver: 5840
+**MKVCleaver**: 5840
 
-MegaBasterd: 5860 (no VNC viewer 59xx port)
+**MegaBasterd**: 5860 (no VNC viewer 59xx port)
+- this app require special configuration that is documented [here](https://github.com/vttc08/megabasterd-docker)
+- pin the image to `v2.0.0`
+- use the `VERSION` to download the correct binary
 
 There are also some application specific setup. For applications accessing hard drive or intensive apps, it is best to stop when not used. [Lazytainer ](https://github.com/vmorganp/Lazytainer)and [ContainerNursery](https://github.com/ItsEcholot/ContainerNursery) and possibly using DNS server can help automate this process.
 
 **JDownloader**
-
 [JDownloader Setup](../Cloud%20VPS/jdownloader.md)

@@ -1,6 +1,7 @@
 # Home
 ### Recent Updates
 
+- [jlesage VNC Apps](jlesage-vnc-apps.md)
 - [Webtop (openbox-ubuntu)](webtop.md)
 - [Mkdocs](mkdocs.md)
 - [01 Docker Infrastructure](01 docker-infra.md)
@@ -10,4 +11,3 @@
 - [Dynamic DNS Updater Docker](ddns-update.md)
 - [Filebrowser](filebrowser.md)
 - [Debian-Based Server Setup](debian-based-server-setup.md)
-- [Tunneling Basic Services (Jellyfin, Web) with Caddy and Tailscale](tunneling-basic-services-jellyfin-web-with-caddy-and-tailscale.md)
