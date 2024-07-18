@@ -1,6 +1,6 @@
 ---
 date: 2023-11-09T04:10:51.000000Z
-update: 2024-07-15T13:48:36-07:00
+update: 2024-07-17T20:25:22-07:00
 comments: "true"
 ---
 # jlesage VNC Apps
@@ -14,7 +14,7 @@ The environment file can be reference in many docker images from jlesage using d
 
 ```yaml
 USER_ID=1000
-GROUP_ID=1000
+GROUP_ID=1001
 TZ=America/Vancouver
 DARK_MODE=1
 ```
@@ -52,11 +52,15 @@ The application port start from 5800/5900 for its corresponding access and add 1
 **MKVToolNix**: 5820
 
 **MKVCleaver**: 5840
+- it's best to use this app on-demand due to phantom CPU usage
 
 **MegaBasterd**: 5860 (no VNC viewer 59xx port)
 - this app require special configuration that is documented [here](https://github.com/vttc08/megabasterd-docker)
-- pin the image to `v2.0.0`
 - use the `VERSION` to download the correct binary
+
+**MCASelector**: 5870
+- this app require special configuration that is documented [here](https://github.com/vttc08/docker-mcaselector)
+- it's best to use the app on-demand due to phantom CPU usage and high RAM usage
 
 There are also some application specific setup. For applications accessing hard drive or intensive apps, it is best to stop when not used. [Lazytainer ](https://github.com/vmorganp/Lazytainer)and [ContainerNursery](https://github.com/ItsEcholot/ContainerNursery) and possibly using DNS server can help automate this process.
 
