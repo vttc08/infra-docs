@@ -1,11 +1,9 @@
 ---
 date: 2023-09-02T19:44:45.000000Z
-update: 2024-06-26T22:34:24-07:00
+update: 2024-07-18T16:20:11-07:00
 comments: "true"
 ---
 # Debian-Based Server Setup
-
-**Debian 12 with Desktop**
 
 Run update and upgrade distro first. Install NTP package is there are errors with that. Reboot
 
@@ -28,7 +26,7 @@ Ensure these packages are installedi
 powertop htop iotop fio curl gnupg wget ntfs-3g neofetch ca-certificates lsb-release hdparm hd-idle openssh-server at
 ```
 
-**HDD**
+### HDD
 
 `lsblk` and `blkid` to get the ntfs hard drive /dev name and the /dev/by-uuid/...
 
@@ -65,9 +63,9 @@ Edit shortcuts in bashrc
 source .bashrc
 ```
 
-**OpenSSH with Keys**
+### OpenSSH with Keys
 
-**Generate the key using the terminal**
+#### Generate the key using the terminal
 
 ```bash
 ssh-keygen
@@ -84,33 +82,43 @@ ssh-copy-id -i key.pub username@server
 
 The key is ready to use for authorization.
 
-**Generate keys using PuTTY software**
+#### Generate keys using PuTTY software
 
 ![](assets/gallery/2023-09/image.png)
 
 1. Copy the red part and use nano to add it in the server `~/.ssh/authorized_keys`
 2. Make sure permissions are correct
-3. ```bash
-    mkdir -p ~/.ssh
-    chmod 700 ~/.ssh
-    chmod 600 ~/.ssh/authorized_keys
-    nano ~/.ssh/authorized_keys
-    ```
-4. Save private key as ppk file on the root ssh folder.
-5. If the client with private key is Linux machine, need to change the permission of the private key.
+```bash
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+nano ~/.ssh/authorized_keys
+```
+3. Save private key as ppk file on the root ssh folder.
+4. If the client with private key is Linux machine, need to change the permission of the private key.
     
     ```bash
     chmod 600 private.key
     ```
-6. Convert the private key Conversion &gt; Export OpenSSH Keys and save the file to a folder OpenSSH Keys
+5. Convert the private key Conversion &gt; Export OpenSSH Keys and save the file to a folder OpenSSH Keys
+#### SSH Config
+Configuration file for easy SSH access. The permission for that file is **644**.
+```
+Host server
+  HostName 10.10.120.1
+  User ubuntu
+  IdentityFile ~/keys/server.key
+```
 
-**Setting Up SMB**
+>[!note] Use with [OliveTin](olivetin.md)
+> To have seamless ssh experience with OliveTin, make sure to copy the `ssh config` file and all the keys to `/root`, since in OliveTin `~` means `/root` not your user home directory.
+
+### Setting Up SMB
 
 Refer to [Samba(SMB) Setup](sambasmb-setup.md) to setup SMB server.
+### Desktop Environment Setup
 
-**Desktop Environment Setup**
-
-**Firefox**
+#### Firefox
 
 The location of firefox profile is at /home/$USER/.mozilla/firefox/xxxxx.default
 
@@ -135,7 +143,7 @@ To backup/restore settings of cinnamon
 
 The icons are located at these locations.
 
-```bash
+```shell
 /usr/share/icons
 ~/.icons
 ```

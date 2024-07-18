@@ -1,6 +1,6 @@
 ---
 date: 2023-09-19T21:15:30.000000Z
-update: 2024-07-10T18:43:56-07:00
+update: 2024-07-18T16:05:35-07:00
 comments: "true"
 ---
 # OliveTin
@@ -153,6 +153,12 @@ It is possible to have a confirmation before completing action.
 
 - user must click a checkbox and then start before the action will execute
 - API do not have such restrictions
+
+##### SSH to Another Server
+Since OliveTin by default runs command as root, it is necessary to copy the SSH `config` file and all the keys from a user's folder into `/root/.ssh`
+- if the permission is setup correctly for a user, the permissions will copy over
+
+On the first try, need to have this option when using SSH command `-o StrictHostChecking=no` and on the subsequent logins, ssh via ssh configs will work as normal.
 ### Icons
 The icons need to be placed in a folder in */var/www/\[icon-folder\]/icon.png.* To use the icons, offline image or web address, it should be in HTML format. The size of 48px is the default size of OliveTin icons. Other CSS options such as `style="background-color: white;"` also works.
 ```yaml
