@@ -1,9 +1,9 @@
 # Home
 ### Recent Updates
 
+- [jlesage VNC Apps](jlesage-vnc-apps.md)
 - [Debian-Based Server Setup](debian-based-server-setup.md)
 - [OliveTin](olivetin.md)
-- [jlesage VNC Apps](jlesage-vnc-apps.md)
 - [Webtop (openbox-ubuntu)](webtop.md)
 - [Mkdocs](mkdocs.md)
 - [01 Docker Infrastructure](01 docker-infra.md)
