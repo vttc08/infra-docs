@@ -1,6 +1,6 @@
 ---
 date: 2023-12-26T04:57:20.000000Z
-update: 2024-06-30T18:04:17-07:00
+update: 2024-07-20T23:29:00-07:00
 comments: "true"
 ---
 # Filebrowser
@@ -28,7 +28,7 @@ services:
             - '/mnt/nvme/share:/srv/nvme-share'
 ```
 
-The first 3 bind mount are for configuration of filebrowser, eg. config, database and branding files. On first deployment, need to create an empty database.db file. The remaining bind mount are for the folders that need to be accessed, the folders should be bound under /srv.
+The first 3 bind mount are for configuration of filebrowser, eg. config, database and branding files. On first deployment, need to create an empty database.db file. The remaining bind mount are for the folders that need to be accessed, the folders should be bound under `/srv`. Filebrowser by default create a volume under `/srv`, in this setup where folders are bind mount to subfolders in `/srv` and nothing bind mount directly, it could create a specific volume under docker just for `/srv` which is unavoidable.
 
 This is the content of `.filebrowser.json`
 

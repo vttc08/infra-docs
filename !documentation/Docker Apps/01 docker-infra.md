@@ -3,7 +3,7 @@ date: 2024-07-05 17:59
 update: 2024-07-10T18:44:09-07:00
 comments: "true"
 ---
-# 01 Docker Infrastructure
+**# 01 Docker Infrastructure
 
 ### Filesystem
 ##### Compose
