@@ -1,9 +1,9 @@
 ---
 date: 2024-07-05 17:59
-update: 2024-07-10T18:44:09-07:00
+update: 2024-07-23T21:15:48-07:00
 comments: "true"
 ---
-**# 01 Docker Infrastructure
+# 01 Docker Infrastructure
 
 ### Filesystem
 ##### Compose
@@ -45,3 +45,4 @@ Games - game servers and associated tools
 Filesharing - apps that share files to other clients
 Documentation - notes and operation procedures for server infrastructure
 Authentication - services that handle single sign-on (SSO) with users
+
