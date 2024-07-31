@@ -64,8 +64,6 @@ No other configurations are nessecary.
 ### Backup/Restore
 If using bind mount, simply copy the files in the bind mount and everything will work on the new machine without issues. No database dumps, other steps are necessary.
 - ensure the username/password/secret in the environments are matching
-### Other
-Jellystat do not 'support' TV show tracking. It will only track movies as played. Individual episode plays do not count toward statistics, it appears only finishing the entire TV show will count.
 ### Reverse Proxy/SSO
 App do not have SSO support. The internal login cannot be disabled, [github issue](https://github.com/CyferShepard/Jellystat/issues/218).
 App do not support subfolders, only subpath supported. No special requirements needed when using Nginx Proxy Manager. If the frontend is in the same network as proxy, simply `jellystat:3000` is enough.
