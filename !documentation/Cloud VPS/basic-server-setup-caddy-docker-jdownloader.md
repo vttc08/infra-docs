@@ -1,6 +1,6 @@
 ---
 date: 2023-01-11T04:54:20.000000Z
-update: 2024-06-03T22:40:50-07:00
+update: 2024-08-01T12:26:01-07:00
 comments: "true"
 ---
 # Basic Server Setup, Caddy, Docker, JDownloader

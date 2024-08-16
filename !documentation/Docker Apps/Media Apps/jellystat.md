@@ -1,6 +1,6 @@
 ---
 date: 2024-07-23 17:39
-update: 2024-07-24T16:16:08-07:00
+update: 2024-08-05T14:13:52-07:00
 comments: "true"
 ---
 # Jellystat
@@ -26,6 +26,7 @@ services:
       PGTZ: 'America/Vancouver'
     volumes:
     - ~/docker/jellystat/db:/var/lib/postgresql/data # Mounting the volume
+    restart: unless-stopped
 
   jellystat:
     image: cyfershepard/jellystat:latest
