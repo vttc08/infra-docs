@@ -1,11 +1,12 @@
 ---
 date: 2023-02-11T21:53:20.000000Z
-update: 2024-08-16T13:58:08-07:00
+update: 2024-08-22T16:37:40-07:00
 comments: "true"
 ---
 # Audiobookshelf
-
 Audiobooks and podcasts. 
+> [!danger]+ UID/GID
+> With the newer version of ABS. The environment variables `AUDIOBOOKSHELF_UID` and `GID` are removed, the container now runs as root with no ways to change it; if using the `user` flag in docker, there would be permission error on startup.
 
 Docker-compose, place it in the media apps compose media.yml
 
@@ -14,9 +15,6 @@ version: "3.7"
 services:
   audiobookshelf:
     image: ghcr.io/advplyr/audiobookshelf:latest
-    environment:
-      - AUDIOBOOKSHELF_UID=1000
-      - AUDIOBOOKSHELF_GID=1001
     ports:
       - 13378:80
     volumes:
@@ -25,8 +23,28 @@ services:
       - $HOME/audiobookshelf/config:/config
       - $HOME/audiobookshelf/metadata:/metadata
     restart: unless-stopped
+    
+  audiobookshelf-permfix:
+    container_name: abs-permfix
+    image: ubuntu
+    networks:
+      - public
+    command: bash -c "chown -R $${PUID}:$${PGID} /mnt; echo sleeping; sleep $${TIME}"
+    volumes:
+      - /mnt/data/Audios/audiobooks:/mnt/audiobooks # hard drive mount
+      - /mnt/data/Audios/podcasts:/mnt/podcasts # hard drive mount
+      - ~/docker/audiobookshelf/config:/mnt/config
+      - ~/docker/audiobookshelf/metadata:/mnt/metadata
+    environment:
+      - PUID=1000
+      - PGID=1001
+      - TIME=1h
+    restart: unless-stopped
 ```
 
+- The change made to the docker-compose include a `permfix` that automatically `chown` everything in audiobookshelf bind mounts
+	- mount everything into `/mnt`
+	- change the user and group ID accordingly
 ## Usage
 
 To add a library, go to settings, libraries and add the path as mounted in docker.
