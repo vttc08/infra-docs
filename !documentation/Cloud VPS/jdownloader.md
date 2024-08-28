@@ -1,8 +1,27 @@
 ---
 date: 2023-01-11T05:43:16.000000Z
-update: 2024-07-02T22:22:24-07:00
+update: 2024-08-27T20:49:10-07:00
 ---
 # JDownloader
+
+### Basic Setup
+#### Configuring JDownloader
+
+- Go to the JDownloader WebUI
+- Go to Settings
+- Under general, change the max number of downloads (2) and DL per hoster (1) to minimize issues
+
+![](assets/gallery/2023-01/t3Ximage.png)
+
+- Go to MyJDownloader and configure MyJDownloader account
+
+![](assets/gallery/2023-01/jbeimage.png)
+
+- Go to extension modules, install and enable "folderwatch"
+
+![](assets/gallery/2023-01/ZjUimage.png)
+
+The configuration for JDownloader is complete and should appear and be functional in WebUI. [Advanced JDownloader](jdownloader.md) documentation will be covered in detailed in another section. It is recommended to close port 5800 after configuring to prevent others accessing.
 
 After setting up JDownloader and it appears well in WebUI.
 

@@ -1,13 +1,13 @@
 # Home
 ### Recent Updates
 
-- [Fireshare](fireshare.md)
-- [RuTorrent](rutorrent.md)
 - [Custom Caddy Lego](caddy.md)
+- [Basic Server Setup, Caddy, Docker, Tailscale](basic-server-setup-caddy-docker-tailscale.md)
+- [Debian-Based Server Setup](debian-based-server-setup.md)
+- [RuTorrent](rutorrent.md)
+- [Tunneling Basic Services (Jellyfin, Web) with Caddy and Tailscale](tunneling-basic-services-jellyfin-web-with-caddy-and-tailscale.md)
+- [JDownloader](jdownloader.md)
+- [Fireshare](fireshare.md)
 - [Audiobookshelf](audiobookshelf.md)
 - [Jellystat](jellystat.md)
-- [Basic Server Setup, Caddy, Docker, JDownloader](basic-server-setup-caddy-docker-jdownloader.md)
-- [Debian-Based Server Setup](debian-based-server-setup.md)
 - [Bluemap](bluemap.md)
-- [Ratings](02-docker-ratings.md)
-- [Useful Plugins](useful-plugins.md)

@@ -1,6 +1,6 @@
 ---
 date: 2023-09-02T19:44:45.000000Z
-update: 2024-07-31T11:45:12-07:00
+update: 2024-08-28T12:37:51-07:00
 comments: "true"
 ---
 # Debian-Based Server Setup
@@ -23,9 +23,10 @@ Powersave governor and at reboot. Remember to run the command again
 Ensure these packages are installedi
 
 ```bash
-powertop htop iotop fio curl gnupg wget ntfs-3g neofetch ca-certificates lsb-release hdparm hd-idle openssh-server at autojump screen
+powertop htop iotop fio curl gnupg wget ntfs-3g neofetch ca-certificates lsb-release hdparm hd-idle openssh-server at autojump screen bash-completion
 ```
 
+- after installing `bash-completion`, need to source `.bashrc` for Docker autocomplete to work
 ### HDD
 
 `lsblk` and `blkid` to get the ntfs hard drive /dev name and the /dev/by-uuid/...
