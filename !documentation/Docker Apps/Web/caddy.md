@@ -1,6 +1,6 @@
 ---
 date: 2024-07-31 18:51
-update: 2024-08-28T14:09:37-07:00
+update: 2024-09-02T22:13:30-07:00
 comments: "true"
 ---
 # Custom Caddy Lego
@@ -109,6 +109,16 @@ Then modify the `image` part of `compose.yml`
 	- this is later used in `handle @web`
 	- use `reverse_proxy` block to define the port to be reverse proxied
 In this method, only Docker containers that is in the same Docker network of `public` can be reverse proxied. By the internal port and via container names. Tailscale IP entries should also work.
+### HTML File Server
+If caddy uses bind mount and access to the root of HTML files, it can be file server. First need to create the bind mount in `/www` of the container. Then edit the Caddyfile
+```
+        @fs host fs.{$WEBSITE}
+        handle @fs {
+                root * /www
+                file_server
+                encode gzip
+        }
+```
 ### Environment Variables
 The previous codeblock already utilize environment variables. The syntax is `{$NAME}`.
 ### Whitelisting
@@ -117,3 +127,8 @@ The previous codeblock already utilize environment variables. The syntax is `{$N
                 respond @blocked "Unauthorized" 403
 ```
 This respond 403 unauthorized on any IP addresses not in whitelist.
+## Usage
+### Reloading
+```bash
+docker exec -w /etc/caddy caddy caddy reload
+```
