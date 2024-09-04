@@ -1,6 +1,7 @@
 # Home
 ### Recent Updates
 
+- [Webtop (openbox-ubuntu)](webtop.md)
 - [RuTorrent](rutorrent.md)
 - [Custom Caddy Lego](caddy.md)
 - [Basic Server Setup, Caddy, Docker, Tailscale](basic-server-setup-caddy-docker-tailscale.md)
@@ -10,4 +11,3 @@
 - [Fireshare](fireshare.md)
 - [Audiobookshelf](audiobookshelf.md)
 - [Jellystat](jellystat.md)
-- [Bluemap](bluemap.md)

@@ -1,6 +1,6 @@
 ---
 date: 2024-01-23 08:35
-update: 2024-07-15T13:45:38-07:00
+update: 2024-09-04T12:09:16-07:00
 comments: "true"
 ---
 # Webtop (openbox-ubuntu)
@@ -114,3 +114,66 @@ Subtitle-Edit Dark theme has to be changed manually
 - `Options` -> `Settings` -> `Appearance` -> `Use Dark Theme`
 - `Options` -> `Settings` -> `Syntax Coloring` -> `Error color` and change to `27111D`
 - `Options` -> `Settings` -> `Appearance` -> `UI Font` -> `General` and change to `WenQuanYi Zen Hei`
+## Obsidian Webtop
+
+```yaml
+services:
+  obsidian:
+    image: lscr.io/linuxserver/obsidian:latest
+    container_name: obsidian
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1001
+      - TZ=America/Vancouver
+      - SUBFOLDER=/obsidian/
+      - TITLE=Obsidian
+    volumes:
+      - ~/docker/obsidian-webtop:/config
+      - ~/Documents/notes:/notes
+    networks:
+      - public
+    ports:
+      - 3010:3000
+    devices:
+      - /dev/dri:/dev/dri
+    shm_size: "1gb"
+    restart: unless-stopped
+
+networks:
+  public:
+    name: public
+    external: true
+```
+
+- standard procedure for PUGID, TZ and docker networks
+- optional environment variable `PASSWORD` for HTTP basic auth
+- `SUBFOLDER` can be used for reverse proxy with custom location
+### Authentication
+Setup of webtop with Authelia require more configurations. Needs to manually configure the custom location in Nginx Proxy Manager just like [bluemap](Minecraft/bluemap.md).
+```nginx
+location /obsidian/ {
+  proxy_set_header Upgrade $http_upgrade;
+  proxy_set_header Connection $http_connection;
+  include /snippets/proxy.conf;
+  include /snippets/authelia-authrequest.conf;
+  proxy_pass http://10.10.120.12:3010/obsidian/;
+}
+```
+
+- the `proxy_set_header` lines are required because of websocket
+
+Authelia configuration (need whitelist VNC assets)
+```yaml
+    - domain: "basedomainforsubfolder.mywire.org"
+      resources:
+        - "socket.io/*"
+        - "public/*"
+        - "vnc/*"
+      policy: bypass
+    - domain: "basedomainforsubfolder.mywire.org"
+      policy: one_factor
+
+```
+
