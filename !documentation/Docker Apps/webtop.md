@@ -1,6 +1,6 @@
 ---
 date: 2024-01-23 08:35
-update: 2024-09-04T12:09:16-07:00
+update: 2024-09-09T21:44:11-07:00
 comments: "true"
 ---
 # Webtop (openbox-ubuntu)
@@ -115,6 +115,8 @@ Subtitle-Edit Dark theme has to be changed manually
 - `Options` -> `Settings` -> `Syntax Coloring` -> `Error color` and change to `27111D`
 - `Options` -> `Settings` -> `Appearance` -> `UI Font` -> `General` and change to `WenQuanYi Zen Hei`
 ## Obsidian Webtop
+
+Make sure to close everything in Obsidian to reduce CPU usage.
 
 ```yaml
 services:
