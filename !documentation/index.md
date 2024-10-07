@@ -1,13 +1,13 @@
 # Home
 ### Recent Updates
 
-- [YouTube Archive](youtube-archiving.md)
+- [VSCode Server](code-server.md)
+- [Ghost CMS](ghost-cms.md)
 - [RuTorrent](rutorrent.md)
+- [Invidious](invidious.md)
+- [Ghost CMS Docker](ghost-docker.md)
+- [yt-dlp oauth](yt-dlp oauth.md)
+- [Uptime Kuma](uptime-kuma.md)
+- [Tunneling Minecraft Server TCP/UDP Geyser with Nginx](tunneling-minecraft-server-tcp-only-with-nginx.md)
+- [YouTube Archive](youtube-archiving.md)
 - [Webtop (openbox-ubuntu)](webtop.md)
-- [Custom Caddy Lego](caddy.md)
-- [Basic Server Setup, Caddy, Docker, Tailscale](basic-server-setup-caddy-docker-tailscale.md)
-- [Debian-Based Server Setup](debian-based-server-setup.md)
-- [Tunneling Basic Services (Jellyfin, Web) with Caddy and Tailscale](tunneling-basic-services-jellyfin-web-with-caddy-and-tailscale.md)
-- [JDownloader](jdownloader.md)
-- [Fireshare](fireshare.md)
-- [Audiobookshelf](audiobookshelf.md)

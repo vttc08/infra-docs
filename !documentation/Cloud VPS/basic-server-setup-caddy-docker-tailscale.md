@@ -112,7 +112,7 @@ On the Linux machine, either use `iptables` or `firewall-cmd`
 	sudo iptables -I INPUT 6 -m state --state NEW -p udp --dport 19132 -j ACCEPT
 	sudo iptables -I INPUT 6 -m state --state NEW -p udp --dport 51820 -j ACCEPT
 	sudo netfilter-persistent save
-	```
+	``` ^4f1e6a
 #### Troubleshooting
 
 For firewall-cmd, use this command to check all open ports.
