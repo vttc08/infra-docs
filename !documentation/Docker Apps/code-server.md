@@ -1,6 +1,6 @@
 ---
 date: 2024-10-05 19:45
-update: 2024-10-07T14:10:55-07:00
+update: 2024-10-07T22:23:57-07:00
 comments: "true"
 ---
 # VSCode Server
@@ -52,6 +52,12 @@ The setup follows the same [01-docker-infra](01-docker-infra.md), since this is 
 `DEFAULT_WORKSPACE` - the directory that VSCode will open to when accessing it, defaults to `/config`
 The container is Linuxserver so it follows their standards of PUGID and TZ
 The Docker Mods will add python3 into the environment for debugging python files.
+### env file
+```
+HASHED_PASSWORD=
+```
+The environment file should contain the hashed password, use https://argon2.online/ to generate a hashed password.
+Although 2FA and SSO is supported, it is still recommended to put another layer of password since VSCode server have access to very sensitive files.
 ### Directory
 The base configuration is stored in `~/docker/code-server` as usual
 - the bind mount `/config` is the container is also the `XDG_HOME` which is the default Linux home directory
@@ -61,6 +67,7 @@ The **workspace** folder contains `docker` (docker configuration and data) and `
 ## Usage
 The app functions similarly to VSCode and mostly follows the shortcut of the desktop version. Such as ++ctrl+shift+p++ to open command palette.
 The app has high idle usage, try to close workspace/sign out and restart after editing, or use solutions to use on-demand.
+The app also have access to Github accounts, first clone a private repo and code-server will prompt for login for Github.
 ### Problems
 Official account sync login doesn't work, third party extensions doesn't work either, so the settings has to be done manually.
 - for basic configurations `keybindings.json` and `settings.json` contains all the theme and extension settings for a minimal viable VSCode
