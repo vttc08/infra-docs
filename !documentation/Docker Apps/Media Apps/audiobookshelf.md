@@ -1,6 +1,6 @@
 ---
 date: 2023-02-11T21:53:20.000000Z
-update: 2024-08-22T16:37:40-07:00
+update: 2024-10-14T23:57:50-07:00
 comments: "true"
 ---
 # Audiobookshelf
@@ -53,7 +53,7 @@ Go to Users, change the root password and create a new user. Note, the user cann
 
 ![](assets/gallery/2023-02/FI4image.png)
 
-#### **Adding Media**
+### Adding Media
 
 Make sure the contents are in a separate folder. Follow naming like this. A cover image can also be created. The best bitrate should be under 128 kbps for smooth playback.
 
@@ -84,16 +84,42 @@ If the media does not match or not have an image, go click the edit icon, go to 
 
 If the chapter does not match, chapters can be edited manually. Go to Chapter and Lookup.
 
-#### **Mobile App**
+### Mobile App
 **[https://play.google.com/store/apps/details?id=com.audiobookshelf.app](https://play.google.com/store/apps/details?id=com.audiobookshelf.app)**
 
-Mobile app also has download functionality, however, the directory cannot be changed, the default for download is `/Internal Storage/Download/{Podcast or Audiobook}`
+Mobile app also has download functionality; however, by default the download location is inaccessible.  Go to `Local Media` create a New Folder for books or audiobooks and, the app will ask for location.
 
 The statistic of minutes listened is the actual minutes listened, not the minutes of audiobook progress listened (eg. playing at faster speed).
 
 #### Backup/Restore
 In the WebUI, go to `Settings` > `Backups` and there will be option for backup/restore. Alternatively, copy the entire appdata folder to another computer.
-##### **Scripting (Windows)**
+
+### Proxy/SSO
+#### Reverse Proxy
+To reverse proxy properly in Nginx Proxy Manager, ensure `Websocket Support`.
+#### Authelia (OIDC)
+For use with Authelia OIDC, subdomain (not subfolder) is required. No additional reverse proxy configuration needed. In the Authelia OIDC clients configuration
+```yaml
+      - id: audiobookshelf
+        client_name: Audiobookshelf
+        client_secret: '$plaintext${{ env "AUDIOBOOKSHELF_SECRET" }}'
+        public: false
+        authorization_policy: 'one_factor'
+        redirect_uris:
+          - 'https://abs.{{ env "DOMAIN_NAME"}}/auth/openid/callback'
+          - 'https://abs.{{ env "DOMAIN_NAME"}}/auth/openid/mobile-redirect'
+        scopes:
+          - 'openid'
+          - 'profile'
+          - 'email'
+```
+
+For configuration in Audiobookshelf, fill in the Issuer URL and click `Auto-Populate`, most important information will be filled out. Fill in the generated client secret manually. These settings need changed 
+- Matching existing users by `Match by username` (alternatively add email for each ABS user)
+- `Auto Register` - new users if not exist in ABS will be created and linked
+Despite OIDC enabled, the internal login can still work, non OIDC users can login.
+
+#### Scripting (Windows)
 
 ffmpeg detect audio silence (for splitting a large audio file into multiple chapters)
 

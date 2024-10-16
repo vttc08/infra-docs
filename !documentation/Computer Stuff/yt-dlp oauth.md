@@ -1,3 +1,9 @@
+---
+date: 2024-09-25 22:56
+update: 2024-10-14T23:49:01-07:00
+comments: "true"
+---
+
 # yt-dlp oauth
 Using yt-dlp may need [oauth2](https://github.com/coletdjnz/yt-dlp-youtube-oauth2) plugin in order to use on VPS or download private videos.
 
