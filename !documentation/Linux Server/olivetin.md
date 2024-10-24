@@ -1,6 +1,6 @@
 ---
 date: 2023-09-19T21:15:30.000000Z
-update: 2024-07-18T16:05:35-07:00
+update: 2024-10-22T14:19:57-07:00
 comments: "true"
 ---
 # OliveTin
@@ -169,6 +169,8 @@ For example, `&#9786;` <span class="symbol-main__title--symbl">😊.</span>
 ```yaml
 icon: "&#9786;"
 ```
+
+For documentation purpose, the customs icons are in a `OliveTin Custom.psd` files
 ##### Third-Party
 Olivetin only support [iconify](https://icon-sets.iconify.design/) icons. To use it, search for an icon, under `components` select `Iconify Icon`
 ![](assets/Pasted%20image%2020240706225420.png)

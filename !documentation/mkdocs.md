@@ -1,6 +1,6 @@
 ---
 comments: "true"
-update: 2024-07-10T18:47:00-07:00
+update: 2024-10-23T19:38:14-07:00
 ---
 # Mkdocs
 ### Mkdocs Gotchas
