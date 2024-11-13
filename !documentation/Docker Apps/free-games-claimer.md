@@ -1,6 +1,6 @@
 ---
 date: 2023-09-23T05:03:35.000000Z
-update: 2024-06-05T14:56:51-07:00
+update: 2024-11-12T16:36:51-08:00
 comments: "true"
 ---
 # Free Games Claimer
@@ -9,7 +9,7 @@ comments: "true"
 
 This is the Github repo for the new and advanced free games claimer. This is implemented after Epicgames FreeGames keeps failing.
 
-### **Configuration**
+### Configuration
 
 Using Docker-Compose
 
@@ -17,6 +17,7 @@ In the folder structure
 
 ```powershell
 server: ~/docker/fgc$
+./data
 docker-compose.yml
 fgc.env
 ```
@@ -47,6 +48,7 @@ services:
     container_name: FGC # is printed in front of every output line
     image: ghcr.io/vogler/free-games-claimer # otherwise image name will be free-games-claimer-free-games-claimer
     build: .
+    user: ${PUID}:${PGID}
     ports:
       - "5990:5900" # VNC server
       - "5890:6080" # noVNC (browser-based VNC client)
@@ -62,14 +64,14 @@ services:
 
 ```
 
-This docker-compose file use the environment file fgc.env as indicated above and runs once every day. It also contains VNC server/web based client.
+This docker-compose file use the environment file `fgc.env` as indicated above and runs once every day. It also contains VNC server/web based client.
 
-### **Missing Captcha Session**
+### Missing Captcha Session
 
 This should no longer be needed. Edit the line to [epicgames.js](https://github.com/vogler/free-games-claimer/blob/5919d37efaabad98c303e087c4874cffb58b3cb9/epic-games.js#L231) code and replace with the following message. When the captcha is missed, it will send a notification for manual claiming.
 
 ```javascript
-wait notify(`epic-games: got captcha challenge right before claim. Use VNC to solve it manually. Game link: \n ${url}`)
+await notify(`epic-games: got captcha challenge right before claim. Use VNC to solve it manually. Game link: \n ${url}`)
 ```
 
 <s>EpicGames require a captcha to claim free games. If the 5 minute timeout window for EpicGames is missed, it is no longer possible to claim the games unless waiting for the next day, which due to the nature of discord notifications, there is a slim to none chance of catching the captcha at next day. To continuing claiming after acknowledging the missed session, use portainer, ConnectBot Android to temporarily restart the container to restore VNC session.</s>
@@ -80,7 +82,19 @@ wait notify(`epic-games: got captcha challenge right before claim. Use VNC to so
 at 9:20
 > docker restart FGC
 > <EOT>
-
 ```
 
 <s>This will run the command at 9:20 AM the next day. Ctrl-D to exit at prompt and verify the time is correct.</s>
+
+### Login Session Problem
+After not logging in the VNC browser for a long time, it cannot login again, but without VNC in local environment it will work. Need to login locally and copy the files to the Docker server.
+- download [Node](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs) and clone repo, configure everything as in remote server
+- run `npm install` in the cloned repo and run `node epic-games.js`
+- login normally
+
+The app will create `./data` folder in the current directory and a `./browser` folder inside it. Copy the files into the remote server's same location via WinSCP. Permission changes may be required.
+```bash
+sudo chown -R $PUID:$PGID ./data
+rm ./data/browser/compatibility.ini
+```
+If Firefox error occurs, need to delete the `compatibility.ini` file and the Firefox session should resume normally again.

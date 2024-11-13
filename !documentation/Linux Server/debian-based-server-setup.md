@@ -1,6 +1,6 @@
 ---
 date: 2023-09-02T19:44:45.000000Z
-update: 2024-08-28T12:37:51-07:00
+update: 2024-10-30T13:31:01-07:00
 comments: "true"
 ---
 # Debian-Based Server Setup
@@ -20,7 +20,7 @@ Powersave governor and at reboot. Remember to run the command again
 @reboot echo "powersave" | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor >/dev/null 2>&1
 ```
 
-Ensure these packages are installedi
+Ensure these packages are installed
 
 ```bash
 powertop htop iotop fio curl gnupg wget ntfs-3g neofetch ca-certificates lsb-release hdparm hd-idle openssh-server at autojump screen bash-completion
@@ -65,6 +65,8 @@ source .bashrc
 ```
 
 ### OpenSSH with Keys
+
+^7003a1
 
 #### Generate the key using the terminal
 
@@ -117,6 +119,21 @@ Host server
 ### Setting Up SMB
 
 Refer to [Samba(SMB) Setup](sambasmb-setup.md) to setup SMB server.
+### bashrc
+The bashrc will contain server specific variable and functions.
+```shell
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+```
+Bashrc can also link to `bash_aliases` for more alias. Installing additional software may require bashrc changes, eg. `ffsubsync`, `autojump`
+To have a consistent experience even when using SSH, ensure these lines are removed from `bashrc`. However, contents of `bash_aliases` and aliases will not be loaded, only variables.
+```shell
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+```
 ### Desktop Environment Setup
 
 #### Firefox

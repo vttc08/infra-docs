@@ -1,6 +1,6 @@
 ---
 date: 2023-01-11T04:54:20.000000Z
-update: 2024-08-28T12:38:11-07:00
+update: 2024-11-11T19:23:49-08:00
 comments: "true"
 ---
 # Basic Server Setup, Caddy, Docker, Tailscale
@@ -71,7 +71,10 @@ sudo usermod -aG docker ubuntu
 newgrp docker # activate docker group immediately
 ```
 
+Alternative use `docker.io` for out of the box install as this package is provided by the distro repo.
 The machine needs to be rebooted from Oracle Cloud console to finish installation.
+
+Follow [docker](docker.md) for more setup.
 ## Caddy
 ### Docker Version Install
 Detailed information on installing Caddy has moved to [caddy](../Docker%20Apps/Web/caddy.md)

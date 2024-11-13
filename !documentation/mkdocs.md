@@ -1,6 +1,6 @@
 ---
 comments: "true"
-update: 2024-10-23T19:38:14-07:00
+update: 2024-10-24T12:53:44-07:00
 ---
 # Mkdocs
 ### Mkdocs Gotchas
@@ -63,7 +63,7 @@ Available callouts include `notes`, `info`, `warning`, `danger`, `success`, `fai
 ### attr_list
 **Fancy Buttons**
 [mkdocs](mkdocs.md){ .md-button }
-`[button text](link.md){ .md-button }`
+`[button text](mkdocs.md){ .md-button }`
 ![](assets/Pasted%20image%2020240601002119.png)
 **Tooltip**
 I'm a [tooltip](https://google.com "text to show when hovered") that you can hover or click.

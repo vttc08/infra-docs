@@ -1,13 +1,13 @@
 ---
 date: 2024-07-24 16:00
-update: 2024-07-29T14:27:41-07:00
+update: 2024-10-24T13:00:43-07:00
 comments: "true"
 ---
 # Ratings
 Docker App Rating consist of a table that look at the docker app and evaluate its configurations, deployment and usage against some quality of life features such as easy backup/restore, migration, user mapping, time zone logs, single-sign on with multi-user support etc. These ratings will change as more testing are done.
 
 > [!info]- [Docker Apps Rating](02-docker-ratings.md)
-> | [U/GID](02-docker-ratings.md#ugid) | [TZ](02-docker-ratings.md#tz)  | [SSO/Users](02-docker-ratings.md#sso) | [Existing FS](02-docker-ratings.md#existingfs) | [Portable](02-docker-ratings.md#portable) | [Subfolder](02-docker-ratings.md#subfolder) |
+> | [U/GID](02-docker-ratings.md#ugid) | [TZ](02-docker-ratings.md#tz)  | [SSO/Users](02-docker-ratings.md#sso) | [Existing FS](02-docker-ratings.md#existing-fs) | [Portable](02-docker-ratings.md#portable) | [Subfolder](02-docker-ratings.md#subfolder) |
 > | ----- | --- | --------- | -------- | -------- | ------- |
 > | ❎     | ✅*  | ❌🤵       | ✅        | ❌ | ❌ |
 #### UGID
@@ -79,13 +79,13 @@ Existing filesystem structures, the app do not require a folder structure that o
 	- (To be updated)
 === "❌ **No**"
 	- App store its data (both config and media) in encrypted blob, proprietary format, specific database only the app can read
-	- App modify existing file structure for it to work and the permissions it need are incompatible with other workflows, refer to [U/GID](#U/GID)
+	- App modify existing file structure for it to work and the permissions it need are incompatible with other workflows, refer to [U/GID](#ugid)
 	- The only way to import/export/edit data is via the app, it's difficult to use another workflow
 #### Portable
 The portability of the app refers to how easy is it to migrate, backup/restore an app's config. If the frequency of backup/restore is irrelevant or no persistence data is needed such the app runs entirely via docker-compose, it'd be n/a.
 === "✅ **Yes**" 
 	- The app will work on another machine simply by copying the bind mount to the new machine
-	- If [U/GID](#U/GID) are not supported and a named volume is used, copying the volume with various tools will transfer the app to the new machine
+	- If [U/GID](#ugid) are not supported and a named volume is used, copying the volume with various tools will transfer the app to the new machine
 	- If an app uses a database, it will still work after either copying the bind path or volume to the new machine; if not, a repeatable and documented way to dump and import the database is provide so the app will transfer smoothly 
 	- After the app is migrated, zero user intervention is needed and the app to function exactly the same
 === "**🟨 Partially**"
@@ -95,6 +95,12 @@ The portability of the app refers to how easy is it to migrate, backup/restore a
 	- App cannot be migrated or restored by simply copying the files, the app stop workings
 	- The backup process is difficult and often fails
 	- Even with a migration, heavy user intervention is needed for the app to function exactly the same if it's possible
+#### Subfolder
+=== "✅ **Yes**" 
+	- Subfolder refers to the ability to reverse proxy on a subdirectory like `domain.tld/app` instead of `app.domain.tld`
+	- apps that support subfolder usually have configuration for a `baseURL` or have explicit documentation on how to proxy over subfolder in major reverse proxies
+=== "❌ **No**"
+	- App can only be reverse proxied as `app.domain.tld`
 #### Mobile
 The mobile refers to mobiles apps section, this rating determines the quality of mobile integration (only Android tested) since an app on mobiles offers more function than a website.
 === "✅ **Great**" 

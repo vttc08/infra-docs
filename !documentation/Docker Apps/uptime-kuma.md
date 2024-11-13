@@ -1,11 +1,11 @@
 ---
 date: 2024-09-14 22:35
-update: 2024-09-16T15:00:34-07:00
+update: 2024-10-24T12:59:34-07:00
 comments: "true"
 ---
 # Uptime Kuma
 > [!info]- [Docker Apps Rating](02-docker-ratings.md)
-> | [U/GID](02-docker-ratings.md#ugid) | [TZ](02-docker-ratings.md#tz)  | [SSO/Users](02-docker-ratings.md#sso) | [Existing FS](02-docker-ratings.md#existingfs) | [Portable](02-docker-ratings.md#portable) | [Subfolder](02-docker-ratings.md#subfolder) | [Mobile](02-docker-ratings.md#mobile)
+> | [U/GID](02-docker-ratings.md#ugid) | [TZ](02-docker-ratings.md#tz)  | [SSO/Users](02-docker-ratings.md#sso) | [Existing FS](02-docker-ratings.md#existing-fs) | [Portable](02-docker-ratings.md#portable) | [Subfolder](02-docker-ratings.md#subfolder) | [Mobile](02-docker-ratings.md#mobile)
 > | ----- | --- | --------- | -------- | -------- | ------- | -------- |
 > | ❎     | ✅*  | ❌🤵       | ✅        | ✅ | ❌ | ✔ |
 

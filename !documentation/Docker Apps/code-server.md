@@ -1,11 +1,11 @@
 ---
 date: 2024-10-05 19:45
-update: 2024-10-07T22:23:57-07:00
+update: 2024-10-24T12:58:56-07:00
 comments: "true"
 ---
 # VSCode Server
 > [!info]- [Docker Apps Rating](02-docker-ratings.md)
-> | [U/GID](02-docker-ratings.md#ugid) | [TZ](02-docker-ratings.md#tz)  | [SSO/Users](02-docker-ratings.md#sso) | [Existing FS](02-docker-ratings.md#existingfs) | [Portable](02-docker-ratings.md#portable) | [Subfolder](02-docker-ratings.md#subfolder) | [Mobile](02-docker-ratings.md#mobile)
+> | [U/GID](02-docker-ratings.md#ugid) | [TZ](02-docker-ratings.md#tz)  | [SSO/Users](02-docker-ratings.md#sso) | [Existing FS](02-docker-ratings.md#existing-fs) | [Portable](02-docker-ratings.md#portable) | [Subfolder](02-docker-ratings.md#subfolder) | [Mobile](02-docker-ratings.md#mobile)
 > | ----- | --- | --------- | -------- | -------- | ------- | -------- |
 > | ❎     | ✅*  | ❎🤵       | ✅        | ✅ | ✔ | ✔ |
 
@@ -73,7 +73,7 @@ Official account sync login doesn't work, third party extensions doesn't work ei
 - for basic configurations `keybindings.json` and `settings.json` contains all the theme and extension settings for a minimal viable VSCode
 - the `json` files are periodically copied from main Desktop and synced to the server via Syncthing
 
-Remote SSH doesn't work, but can be solved by [SSH](#SSH) extension.
+Remote SSH doesn't work, but can be solved by [SSH](#ssh) extension.
 Github Copilot doesn't work.
 Python syntax highlighting doesn't work.
 ### Extensions

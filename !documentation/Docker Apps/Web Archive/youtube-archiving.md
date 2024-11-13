@@ -1,6 +1,6 @@
 ---
 date: 2024-09-12 21:47
-update: 2024-09-13T13:11:51-07:00
+update: 2024-10-24T13:00:01-07:00
 comments: "true"
 ---
 # YouTube Archive
@@ -39,10 +39,10 @@ networks:
 - create custom network `archive` to easy container access with other apps
 
 ### Usage
-#### Media Profile
+#### Media-Profile
 The profile eg. resolution sponsorblock settings that is used to download videos also consist of renaming. The syntax are listed like such `/{{ source_custom_name }}/{{ channel }}/{{ upload_yyyy_mm_dd }} - {{ title }}.{{ ext }}`. More templates are available for customization. The example above shows a good naming for Jellyfin.
 #### Sources
-The sources are YouTube playlist or channels. To download a [Media Profile](#Media%20Profile) must be applied for the source. 
+The sources are YouTube playlist or channels. To download a [Media Profile](#media-profile) must be applied for the source. 
 - each source can have a custom name that can be applied as `{{ source_custom_name }}`
 The preferred method for indexing is `fast indexing`
 The `Download Cutoff Date` can be set and only videos uploaded after that day will be downloaded.
