@@ -48,7 +48,6 @@ services:
     container_name: FGC # is printed in front of every output line
     image: ghcr.io/vogler/free-games-claimer # otherwise image name will be free-games-claimer-free-games-claimer
     build: .
-    user: ${PUID}:${PGID}
     ports:
       - "5990:5900" # VNC server
       - "5890:6080" # noVNC (browser-based VNC client)
@@ -57,7 +56,7 @@ services:
       - ~/docker/fgc/epic-games.js:/fgc/epic-games.js
       - ~/docker/fgc/prime-gaming.js:/fgc/prime-gaming.js
       - ~/docker/fgc/gog.js:/fgc/gog.js
-    command: bash -c "node epic-games; node prime-gaming; node gog; echo sleeping; sleep 1d"
+    command: bash -c "node gog; node epic-games; echo sleeping; chown -R 1000:1001 /fgc/data; sleep 1d"
     env_file:
       - fgc.env
     restart: unless-stopped

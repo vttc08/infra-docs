@@ -1,6 +1,6 @@
 ---
 date: 2024-11-12 21:25
-update: 2024-11-12T22:10:38-08:00
+update: 2024-11-13T16:24:06-08:00
 comments: "true"
 ---
 # Apprise API
@@ -81,3 +81,49 @@ The Apprise-API include a configuration with the id `apprise` which include all 
 ```
 apprise://10.10.120.12:7000/apprise?tags=discord
 ```
+
+## Mailrise
+Convert standard SMTP mail into Apprise compatible messages.
+### Setup
+Mailrise uses port 8025 by default rather than port 25.
+```yaml
+  mailrise:
+    image: yoryan/mailrise:latest
+    container_name: mailrise
+    ports:
+      - '8025:8025'
+    restart: unless-stopped
+    volumes:
+      - ~/docker/apprise-api/mailrise/mailrise.conf:/etc/mailrise.conf
+```
+Docker compose deploy, must run as root.
+### Configuration
+The configuration is located in `/etc/mailrise.conf`, the file must be created before starting the container otherwise a folder will be created
+- each entries consist of a name and a list of apprise style URLs
+```yaml
+configs:
+  apprise:
+    urls:
+      - apprise://10.10.120.12:7000/apprise/?tags=nzbget
+  qbitdiscord:
+    urls:
+      - apprise://10.10.120.12:7000/apprise/?tags=qbittorrent
+      - discord://anotherurl/apikey
+```
+Editing configuration may require docker restart
+### Client
+For mail client to send email using Apprise server. It must change the SMTP server address and port. 
+
+- the server address is the server running mailrise and port is 8025
+- the recipient is `<name>@mailrise.xyz`
+- the from can be anything, as it will be displayed in the subject of message
+
+Powershell example
+```powershell
+send-mailmessage -from "admin@homelab.local" -to "apprise@mailrise.xyz" -subject "Windows Test" -body "Test message" -smtpserver laptopserver -port 8025
+# Windows Test (admin@homelab.local)
+```
+
+Qbittorrent
+![](assets/Pasted%20image%2020241113162347.png)
+The email notification works in qbittorrent as expected.

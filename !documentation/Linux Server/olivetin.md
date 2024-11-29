@@ -1,6 +1,6 @@
 ---
 date: 2023-09-19T21:15:30.000000Z
-update: 2024-10-22T14:19:57-07:00
+update: 2024-11-24T21:52:41-08:00
 comments: "true"
 ---
 # OliveTin
@@ -160,9 +160,13 @@ Since OliveTin by default runs command as root, it is necessary to copy the SSH 
 
 On the first try, need to have this option when using SSH command `-o StrictHostChecking=no` and on the subsequent logins, ssh via ssh configs will work as normal.
 ### Icons
-The icons need to be placed in a folder in */var/www/\[icon-folder\]/icon.png.* To use the icons, offline image or web address, it should be in HTML format. The size of 48px is the default size of OliveTin icons. Other CSS options such as `style="background-color: white;"` also works.
+> [!bug] Icon Default Location Change
+> The icon is now moved from `/var/www/olivetin` to the configuration directory which by default is at `/etc/Olivetin` and followed by `custom-webui/icons`, if these are not moved, the images will break.
+
+
+The icons need to be placed in a folder in `/etc/Olivetin/custom-webui/icons/icon.png` To use the icons, offline image or web address, it should be in HTML format. The size of 48px is the default size of OliveTin icons. Other CSS options such as `style="background-color: white;"` also works.
 ```yaml
-icon: '<img src = "icons/minecraft.png" size="48px" />'
+icon: '<img src = "custom-webui/icons/minecraft.png" size="48px" />'
 ```
 Icon with emoji, to use emoji, need to use the html code. [https://symbl.cc/en/emoji/](https://symbl.cc/en/emoji/)
 For example, `&#9786;` <span class="symbol-main__title--symbl">😊.</span>

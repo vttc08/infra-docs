@@ -1,6 +1,6 @@
 ---
 date: 2024-09-14 22:35
-update: 2024-10-24T12:59:34-07:00
+update: 2024-11-15T16:25:34-08:00
 comments: "true"
 ---
 # Uptime Kuma
@@ -61,9 +61,9 @@ Tags can be added in `Settings` -> `Tags`, it can be applied to monitors. In the
 
 Status page
 Maintenance
-Tags
 SSO
 Monitor services behind Authelia
 Remote Docker Hosts
 Autokuma
 
+ 
