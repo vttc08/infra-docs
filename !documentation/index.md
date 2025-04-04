@@ -1,13 +1,13 @@
 # Home
 ### Recent Updates
 
-- [IPv6 Oracle Cloud](oracle-cloud-IPv6.md)
+- [Wireguard](wireguard.md)
 - [Ghost CMS Docker](ghost-docker.md)
 - [Docker Setup On Linux Server](docker.md)
-- [Multiple Minecraft Server on Same IP with SRV Record](minecraft-multi-server-srv.md)
+- [Tailscale in Docker](tailscale-docker.md)
+- [Speedtest](speedtest.md)
+- [jlesage VNC Apps](jlesage-vnc-apps.md)
 - [OliveTin](olivetin.md)
-- [Uptime Kuma](uptime-kuma.md)
 - [Samba(SMB) Setup](sambasmb-setup.md)
-- [Apprise API](apprise-api.md)
-- [Free Games Claimer](free-games-claimer.md)
-- [Basic Server Setup, Caddy, Docker, Tailscale](basic-server-setup-caddy-docker-tailscale.md)
+- [IPv6 Oracle Cloud](oracle-cloud-IPv6.md)
+- [Multiple Minecraft Server on Same IP with SRV Record](minecraft-multi-server-srv.md)

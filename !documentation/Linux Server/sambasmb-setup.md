@@ -1,6 +1,6 @@
 ---
 date: 2024-05-07T18:06:07.000000Z
-update: 2024-11-15T10:50:54-08:00
+update: 2024-12-08T20:53:35-08:00
 comments: "true"
 ---
 # Samba(SMB) Setup
@@ -46,7 +46,7 @@ sudo apt-get install cifs-utils -y
 ```
 Make the required folders for mounting SMB drive.
 ```sh
-sudo mkdir -p /mnt/vifs/nvme
+sudo mkdir -p /mnt/cifs/nvme
 ```
 Create a credential file for the server.
 - put it in a root folder directory eg `/root/.server-smbcred`

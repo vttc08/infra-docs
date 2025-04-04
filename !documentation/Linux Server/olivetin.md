@@ -1,6 +1,6 @@
 ---
 date: 2023-09-19T21:15:30.000000Z
-update: 2024-11-24T21:52:41-08:00
+update: 2024-12-10T21:52:02-08:00
 comments: "true"
 ---
 # OliveTin
@@ -183,6 +183,7 @@ Add the pasted line into the configuration.
   - title: Title
     icon: <iconify-icon icon="openmoji:jellyfin"></iconify-icon>
 ```
+Any valid CSS can be used for OliveTin icons, however, the CSS must not contain `#` for example the color code otherwise OliveTin will crash.
 #### Icon Management
 The default icon folder is `/var/www/olivetin/icons`
 The icon folder of all homelab icons is in `~/icons/homelab`
