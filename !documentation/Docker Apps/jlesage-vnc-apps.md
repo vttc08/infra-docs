@@ -1,11 +1,11 @@
 ---
 date: 2023-11-09T04:10:51.000000Z
-update: 2024-12-10T23:17:39-08:00
+update: 2025-06-05T00:10:18-07:00
 comments: "true"
 ---
 # jlesage VNC Apps
 
-VNC apps consists of [desktop applications](https://jlesage.github.io/docker-apps/) that have the GUI in a web browser, mostly from the creator [jlesage](https://github.com/jlesage?tab=repositories). All such VNC apps follow a setup standard with exception to MegaBasterd, refer to [Exception](#Exception).
+VNC apps consists of [desktop applications](https://jlesage.github.io/docker-apps/) that have the GUI in a web browser, mostly from the creator [jlesage](https://github.com/jlesage?tab=repositories). All such VNC apps follow a setup standard with exception to MegaBasterd, refer to [exception](#exception).
 
 ## Environments
 At least for apps from jlesage, it supports an environment variable. Create an environment file called `vnc.env`

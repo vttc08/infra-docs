@@ -1,14 +1,15 @@
 ---
 date: 2025-06-01 21:25
-update: 2025-06-02T16:58:01-07:00
+update: 2025-06-05T00:06:03-07:00
 comments: "true"
 ---
 # Speedtest
 ## OpenSpeedTest
-> [!info]- [Docker Apps Rating](02-docker-ratings.md)
-> | [U/GID](02-docker-ratings.md#ugid) | [TZ](02-docker-ratings.md#tz)  | [SSO/Users](02-docker-ratings.md#sso) | [Existing FS](02-docker-ratings.md#existing-fs) | [Portable](02-docker-ratings.md#portable) | [Subfolder](02-docker-ratings.md#subfolder) | [Mobile](02-docker-ratings.md#mobile)
+> [!info]- [Docker Apps Rating](../02-docker-ratings.md)
+> | [U/GID](../02-docker-ratings.md#ugid) | [TZ](../02-docker-ratings.md#tz)  | [SSO/Users](../02-docker-ratings.md#sso) | [Existing FS](../02-docker-ratings.md#existing-fs) | [Portable](../02-docker-ratings.md#portable) | [Subfolder](../02-docker-ratings.md#subfolder) | [Mobile](../02-docker-ratings.md#mobile) |
 > | ----- | --- | --------- | -------- | -------- | ------- | -------- |
 > | ❎     | ✅  | ✅🤵       | ✅        | n/a | ✅ | ✔ |
+
 ![](assets/Pasted%20image%2020250602141656.png)
 ### Install
 Docker-compose
@@ -60,7 +61,8 @@ https://github.com/librespeed/speedtest
 services:
   speedtest:
     container_name: librespeed
-    image: ghcr.io/librespeed/speedtest:latest
+    #image: ghcr.io/librespeed/speedtest:latest
+    image: vttc08/librespeed-realip
     restart: unless-stopped
     environment:
       MODE: dual
@@ -72,7 +74,7 @@ services:
     ports:
       - "3001:8080" # webport mapping (host:container)
 ```
-Follow the documentation. Changed container name to `librespeed`, the `MODE` to `dual`, setup both frontend and backend, added timezone settings. The volumes include `servers.json` which is used for [Multiserver](#Multiserver).  For ipinfo API key, create a token https://ipinfo.io/dashboard/token.
+Follow the documentation. Changed container name to `librespeed`, the `MODE` to `dual`, setup both frontend and backend, added timezone settings. The volumes include `servers.json` which is used for [multiserver](#multiserver).  For ipinfo API key, create a token https://ipinfo.io/dashboard/token. Librespeed now uses a custom image which modify Apache configuration and trust the reverse proxy.
 ### Post-Install
 Uses the same command as OST to serve librespeed from subdirectory for reverse proxy.
 ```bash
@@ -124,3 +126,23 @@ For documentation only. The remote VPS also have librespeed installed but have C
 
 - uses container networking and addresses by `container:port`
 - when used as such, change the `WEBPORT` environment variable, port mapping is not longer relevant
+### RealIP
+The following Docker modification makes Librespeed Apache show the original IP address from reverse proxy. Otherwise it will show the gateway IP of the specific Docker network its in.
+```Dockerfile
+FROM ghcr.io/librespeed/speedtest:latest
+
+RUN a2enmod remoteip && \
+    echo 'RemoteIPHeader X-Forwarded-For\nRemoteIPTrustedProxy 172.18.0.1' > /etc/apache2/conf-available/remoteip.conf && \
+    a2enconf remoteip
+```
+
+- assuming the IP of Docker network is `172.18.0.1` otherwise use a CIDR range
+
+Build and publish the container image (support both AMD and ARM).
+```bash
+docker buildx create --use --name multiarch-builder
+docker buildx inspect --bootstrap
+docker buildx build --platform linux/amd64,linux/arm64 \
+  -t vttc08/librespeed-realip:latest \
+  --push .
+```

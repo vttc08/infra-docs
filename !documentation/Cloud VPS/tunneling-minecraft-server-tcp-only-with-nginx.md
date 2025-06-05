@@ -1,6 +1,6 @@
 ---
 date: 2023-01-11T05:32:42.000000Z
-update: 2024-09-15T17:21:20-07:00
+update: 2025-06-05T00:11:42-07:00
 comments: "true"
 ---
 # Tunneling Minecraft Server TCP/UDP Geyser with Nginx
@@ -44,7 +44,7 @@ Reload nginx if required.
 sudo service reload nginx
 ```
 ### Firewall
-Allow firewall connection. First ensure [firewall-cmd](basic-server-setup-caddy-docker-tailscale.md#^4f1e6a) is installed. If not, install the package `firewalld`.
+Allow firewall connection. First ensure [firewall-cmd](basic-server-setup-caddy-docker-tailscale.md#port-forwarding) is installed. If not, install the package `firewalld`.
 ```bash
 sudo firewall-cmd --zone=public --add-port 19132/tcp --permanent
 sudo firewall-cmd --zone=public --add-port 19132/udp --permanent
