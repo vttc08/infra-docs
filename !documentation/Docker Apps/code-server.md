@@ -1,6 +1,6 @@
 ---
 date: 2024-10-05 19:45
-update: 2024-10-24T12:58:56-07:00
+update: 2025-06-05T15:16:40-07:00
 comments: "true"
 ---
 # VSCode Server
@@ -12,7 +12,7 @@ comments: "true"
 ![](assets/Pasted%20image%2020241007133530.png)
 ```yaml
 services:
-  code-server:
+code-server:
     image: lscr.io/linuxserver/code-server:latest
     container_name: code-server
     environment:
@@ -20,7 +20,8 @@ services:
       - PGID=1001
       - TZ=America/Vancouver
       - DEFAULT_WORKSPACE=/projects #optional
-      - DOCKER_MODS=linuxserver/mods:code-server-python3
+      - DOCKER_MODS=linuxserver/mods:code-server-python3|linuxserver/mods:universal-docker
+      - DOCKER_HOST=socket-proxy
     env_file:
       - .env
     volumes:
@@ -28,26 +29,33 @@ services:
       - ~/docker/code-server:/config
       # dotfiles
       - ~/.bashrc:/config/.bashrc
+      - ~/.bash_aliases:/config/.bash_aliases
       - ~/.ssh:/config/.ssh
       - ~/.gitconfig:/config/.gitconfig
       - ~/Documents/ssh:/config/Documents/ssh # ssh keys
       # Workspace folders (eg. Docker, other projects)
       - ~/docker:/docker
       - ~/projects:/projects
+      # Linuxserver mod cache
+      - ~/docker/code-server/modcache:/modcache
     ports:
       - 4443:8443
     networks:
       - public
+      - socket
     restart: unless-stopped
 
 networks:
   public:
     name: public
     external: true
+  socket:
+    name: socket
+    external: true
 ```
 
 ## Setup
-The setup follows the same [01-docker-infra](01-docker-infra.md), since this is externally accessible, it has a network of `public`
+The setup follows the same [01-docker-infra](01-docker-infra.md), since this is externally accessible, it has a network of `public`. It also have a network of `socket` to access Docker socket proxy.
 ### Environments
 `DEFAULT_WORKSPACE` - the directory that VSCode will open to when accessing it, defaults to `/config`
 The container is Linuxserver so it follows their standards of PUGID and TZ
@@ -64,6 +72,8 @@ The base configuration is stored in `~/docker/code-server` as usual
 Given that the config is also the home directory, many dotfiles such as bash, git and SSH configuration need to be bind mounted from the hosts `~` directory into containers `/config` or home directory.
 
 The **workspace** folder contains `docker` (docker configuration and data) and `projects` (cloned from git repo) which are frequently edited files.
+
+Since Linuxserver mods are used, a `modcache` folder is used.
 ## Usage
 The app functions similarly to VSCode and mostly follows the shortcut of the desktop version. Such as ++ctrl+shift+p++ to open command palette.
 The app has high idle usage, try to close workspace/sign out and restart after editing, or use solutions to use on-demand.
@@ -104,6 +114,13 @@ The options from left to right are
 - Open Terminal - start a terminal session to the remote folder
 - Settings
 - Disconnect - after editing the remote folder, this will remote the remote folder from the workspace
+#### Copilot
+Copilot Chat and inline chat feature like ++ctrl+i++ doesn't work. But Copilot completion works on some files. Download [Github Copilot Chat](https://www.vsixhub.com/vsix/143611/) and [Github Copilot](https://www.vsixhub.com/vsix/63883/) VSIX file, drag and drop it into VSCode workspace. Then go to extensions > menu > Install from file and the extensions will be installed.
+### Docker
+To use Docker and manage containers in code-server, the Linuxserver mod  `linuxserver/mods:universal-docker` must be used. It is possible to simply expose the Docker socket volume, but for security, [socket-proxy](https://docs.linuxserver.io/images/docker-socket-proxy) is used. Hence, the environment `DOCKER_HOST=socket-proxy` is needed. Since code-server has access to the proxy because of named Docker network, the DNS name `socket-proxy` is enough. The following permissions need to be granted.
+```
+NETWORKS POST ALLOW_START ALLOW_STOP ALLOW_RESTART
+```
 ## Reverse Proxy/Authentication
 ### Reverse Proxy
 The app supports both subdomain and subpath for proxying in Nginx Proxy Manager.
