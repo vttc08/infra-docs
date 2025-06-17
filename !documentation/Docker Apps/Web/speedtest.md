@@ -1,6 +1,6 @@
 ---
 date: 2025-06-01 21:25
-update: 2025-06-05T00:06:03-07:00
+update: 2025-06-10T16:15:47-07:00
 comments: "true"
 ---
 # Speedtest
@@ -22,11 +22,13 @@ services:
     ports:
     - '3000:3000' # HTTP Port
     image: openspeedtest/latest
+    tmpfs:
+      - /var/log/letsencrypt
     environment:
       - TZ=America/Vancouver
 ```
 
-The changed items are `TZ` environment variable. Everything else is from documentation. Default port is 3000.
+The changed items are `TZ` environment variable. Everything else is from documentation. Default port is 3000. The `tmpfs` make sure Docker does not create anonymous volume for unused letsencrypt feature.
 ### Post-Install
 To serve OST from a subpath, e.g. `my.dynu/speedtest`. Need to move files in the container, where `openspeedtest` is the name of the container.
 ```bash

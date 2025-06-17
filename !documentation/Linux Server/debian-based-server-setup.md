@@ -1,6 +1,6 @@
 ---
 date: 2023-09-02T19:44:45.000000Z
-update: 2024-10-30T13:31:01-07:00
+update: 2025-06-08T17:54:41-07:00
 comments: "true"
 ---
 # Debian-Based Server Setup
@@ -127,7 +127,9 @@ if [ -f ~/.bash_aliases ]; then
 fi
 ```
 Bashrc can also link to `bash_aliases` for more alias. Installing additional software may require bashrc changes, eg. `ffsubsync`, `autojump`
-To have a consistent experience even when using SSH, ensure these lines are removed from `bashrc`. However, contents of `bash_aliases` and aliases will not be loaded, only variables.
+To have a consistent experience even when using SSH, ensure these lines are removed from `bashrc`. However, contents of `bash_aliases` and aliases will not be loaded, only variables. This also ensures crontab can use alias variables when sourced.
+
+More `.bashrc` documentation will be in another repo.
 ```shell
 case $- in
     *i*) ;;

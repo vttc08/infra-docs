@@ -1,6 +1,6 @@
 ---
 date: 2025-04-19 20:23
-update: 2025-04-19T21:50:07-07:00
+update: 2025-06-16T19:22:02-07:00
 comments: "true"
 ---
 # 3x-ui V2Ray
@@ -54,7 +54,11 @@ To achieve similar level of access as Tailscale for secure LAN access, this must
 
 - `Xray Configs` > `Basic Routing` > `Blocked IPs` and uncheck LAN
 ## Inbounds
-This is where the V2Ray endpoints are added. For the purpose of
+> [!warning] WS/gRPC Transport
+> Using WS based transport could result in a large number of SNI requests, this is especially problematic for full/global mode. This is solved with using gRPC. However more configuration are needed.
+![](assets/Pasted%20image%2020250616191813.png)
+
+This is where the V2Ray endpoints are added.
 
 - allowing LAN access like Tailscale and Wireguard
 - TLS termination via a reverse proxy already running on 443
@@ -70,6 +74,11 @@ To add a compatible inbound
 - do not enable TLS for now
 
 After adding, click the add arrow, and there is a QR Code button, click to copy, it will show a QR code and copy to clipboard. (The QR Code might need to be expanded for 180% for mobile camera to see)
+
+For gRPC, the only thing that's changed is 
+- transmission `gRPC`
+- Service Name - set to a path for gRPC
+
 ## Reverse Proxy
 ### Nginx Proxy Manager
 Under proxy hosts, add a new one or an existing one and adapt the config to the following
@@ -78,6 +87,13 @@ Under proxy hosts, add a new one or an existing one and adapt the config to the 
 - add the `/anything` path as a custom location and the forwarded port is the same as the one chosen in 3x-ui
 	- more VL/Mess path can be added
 - under SSL, choose a self-signed cert or one that is verified and enable HTTP/2 
+
+Custom configuration is required for gRPC
+```nginx
+location /rpc {
+    grpc_pass grpc://10.10.120.16:56791;
+}
+```
 #### Self-Signed
 ChatGPT reference: https://chatgpt.com/share/67fa180a-4e28-800b-a7b4-8f379a9d0556
 Under Nginx Proxy Manager, `add SSL certificate` and choose `custom`
@@ -98,6 +114,19 @@ fake.or.real.sni.com {
 
 - the `handle /path` must match the WS path and port
 - `tls fullchain privkey` is only necessary when using a self-signed cert, when using a real name, Caddy will automatically issue certs
+
+For gRPC (where `rpc` is the Server Name)
+```
+        @grpc {
+                protocol grpc
+                path  /rpc/*
+        }
+        reverse_proxy @grpc localhost:10081 {
+                transport http {
+                        versions h2c
+                }
+        }
+```
 ## Clients
 > [!danger] Self-Signed certs in Android are subject to MITM attacks
 > In Windows, self-signed CA can be added to **ROOT** authority while on Android it's only possible as user. Even after installing self signed certs, it's installed as user rather than system. The TLS library in V2RayNG and any other Android app does not trust it. Hence, to use SNI names, the `allowInsecure` must be turn OFF, making it vulnerable to MITM. Only the app developers can fix this. It is unlikely firewalls will willingly MITM whitelisted SNI so this could be safe, but more testing is needed.
