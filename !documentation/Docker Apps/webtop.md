@@ -52,13 +52,20 @@ Desktop (tint2, nitrogen)
 ### Firefox Browser
 **policies.json**
 ```json
-// force install ublock, disable annoyances, add bookmarks
 {
   "policies": {
     "ExtensionSettings": {
       "uBlock0@raymondhill.net": {
         "installation_mode": "force_installed",
         "install_url": "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
+      },
+      "{e4a8a97b-f2ed-450b-b12d-ee082ba24781}": {
+        "installation_mode": "force_installed",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi"
+      },
+      "foxyproxy@eric.h.jung": {
+        "installation_mode": "force_installed",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/foxyproxy-standard/latest.xpi"
       }
     },
     "NoDefaultBookmarks": true,
@@ -73,7 +80,8 @@ Desktop (tint2, nitrogen)
         "Title": "SubHD",
         "URL": "https://subhd.tv",
         "Placement": "toolbar"
-      } // Add more bookmarks like this
+      }
+      // Add more bookmarks like this
     ],
     "FirefoxHome": {
       "Search": true,

@@ -1,6 +1,6 @@
 ---
 date: 2025-04-19 20:23
-update: 2025-06-16T19:22:02-07:00
+update: 2025-09-03T13:46:52-07:00
 comments: "true"
 ---
 # 3x-ui V2Ray
@@ -79,6 +79,9 @@ For gRPC, the only thing that's changed is
 - transmission `gRPC`
 - Service Name - set to a path for gRPC
 
+SOCKS5 - this can be setup on home computers to be used via VPS, possibly over [tailscale](tailscale-docker.md) if home internet is behind a CGNAT.
+- SOCKS is in plaintext and not recommended over the internet, with exception of using it with Tailscale
+
 ## Reverse Proxy
 ### Nginx Proxy Manager
 Under proxy hosts, add a new one or an existing one and adapt the config to the following
@@ -127,6 +130,30 @@ For gRPC (where `rpc` is the Server Name)
                 }
         }
 ```
+## Outbounds
+This could use useful if 3x-UI is deployed on a VPS, where sites block VPS IP addresses.
+> [!note] This does not work with NekoBox Android
+
+`Xray Config` - > `Outbounds`, it's possible to add both WARP and custom SOCKS proxy
+
+> [!bug]- WARP/Wireguard do not work in Docker but in bare metal it works
+> Use WARP as SOCKS5 proxy instead
+> Install Cloudflare [warp-cli](https://pkg.cloudflareclient.com/)
+> ```bash
+> sudo apt install cloudflare-warp
+> warp-cli registration new
+> warp-cli mode proxy
+> warp-cli connect
+> ```
+> This will expose a SOCKS5 proxy at `localhost:40000`
+
+1. Add Outbound
+2. Select `SOCKS5` and put a `unique tag`
+3. Provide the address and port
+
+Then configure routing in `Routing Rules`
+1. The setting is straightforward, add a rule, use domain or IP rule or `geosite`
+2. Under `Outbound Tags`, choose the outbound that is created above
 ## Clients
 > [!danger] Self-Signed certs in Android are subject to MITM attacks
 > In Windows, self-signed CA can be added to **ROOT** authority while on Android it's only possible as user. Even after installing self signed certs, it's installed as user rather than system. The TLS library in V2RayNG and any other Android app does not trust it. Hence, to use SNI names, the `allowInsecure` must be turn OFF, making it vulnerable to MITM. Only the app developers can fix this. It is unlikely firewalls will willingly MITM whitelisted SNI so this could be safe, but more testing is needed.
@@ -148,7 +175,5 @@ The files created by 3x-ui are owned by root, use `chown` before moving to anoth
 DNS
 **MITM Proof of Concept**
 Advanced Routing
-iOS apps
-Clash/NekoBox
 Subscription
 Convenience
