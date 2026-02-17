@@ -1,6 +1,6 @@
 ---
 date: 2023-09-23T05:03:35.000000Z
-update: 2024-11-12T16:36:51-08:00
+update: 2026-02-17T11:57:04-08:00
 comments: "true"
 ---
 # Free Games Claimer
@@ -97,3 +97,35 @@ sudo chown -R $PUID:$PGID ./data
 rm ./data/browser/compatibility.ini
 ```
 If Firefox error occurs, need to delete the `compatibility.ini` file and the Firefox session should resume normally again.
+
+### Epic Games Extended Fix
+The original container doesn't work with Epic Games anymore, however, through GamesPower API, it has a list of current EpicGames giveaways. Using [this pull request](https://github.com/vogler/free-games-claimer/pull/571)
+
+However, their container cause problems with dependencies and headless browsers, so 2 containers are needed. One for original (Gog, Prime) and a specific EpicGames one.
+
+Build the new container
+```bash
+git remote add eg-check-gp https://github.com/hubertuszimmer/free-games-claimer
+git fetch eg-check-gp
+git merge eg-check-gp/eg-check-gp main
+docker build -t vttc08/fgc .
+```
+
+Using the new container in compose
+```yaml
+	  - ~/docker/fgc/src:/fgc/src
+```
+
+- this is needed since there are additional files in `src` of the new container
+
+```yaml
+  fgc-epic:
+    container_name: fgc-epic
+```
+
+- change the container name and also the port for noVNC and VNC
+
+```bash
+docker compose -f eg.yml up -d
+docker compose up -d
+```
