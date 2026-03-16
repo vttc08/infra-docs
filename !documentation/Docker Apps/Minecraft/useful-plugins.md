@@ -1,6 +1,6 @@
 ---
 date: 2024-01-05T08:56:01.000000Z
-update: 2024-07-26T17:08:54-07:00
+update: 2026-03-11T13:01:33-07:00
 comments: "true"
 ---
 # Useful Plugins
@@ -38,3 +38,38 @@ enable-proxy-connections: true
 
 Now client can play without login to Xbox or Java.
 
+## Client Plugins
+### Litematica
+Litematica is a client side plugin that allows you to save and load schematics of your build. It must be installed using Fabric.
+
+Install official Minecraft client: https://fabricmc.net/
+Install on MultiMC: https://wiki.fabricmc.net/player:tutorials:install_multimc:windows
+
+Here are the following Java client files needed (choose the correct client e.g. 1.21.11)
+- [Fabric API](https://modrinth.com/mod/fabric-api/versions?g=1.21.11)
+- [Litematic Main Plugin](https://modrinth.com/mod/litematica/versions?g=1.21.11&l=fabric)
+- [MaLiLib](https://modrinth.com/mod/malilib/versions?g=1.21.11&l=fabric)
+
+These files need to be placed in
+```batch
+%appdata%\.minecraft\mods
+```
+
+### Litematica Usage
+1. Use a stick
+2. **CTRL-Scroll** to switch modes
+
+Area Selection (1/9)
+- works the same as world edit, left and right click
+- use **ALT-Scroll** to expand/contract selection
+- use **Middle Click** to select which corner to move
+
+Once the area has been selected, press ++M++ to load the manager
+- `Area Editor`
+- save schematic and provide a name
+
+Paste Schematics (5/9)
+- press ++M++ and `Load Schematics`
+- the schematics will be placed  as ghost
+
+Require configurations
