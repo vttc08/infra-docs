@@ -1,15 +1,44 @@
 ---
 date: 2026-02-16 00:19
-update: 2026-03-13T22:37:22-07:00
+update: 2026-05-01T15:34:13-07:00
 comments: "true"
 ---
 # Seerr
 > [!info]- [Docker Apps Rating](../02-docker-ratings.md)
 > | [U/GID](../02-docker-ratings.md#ugid) | [TZ](../02-docker-ratings.md#tz)  | [SSO/Users](../02-docker-ratings.md#sso) | [Portable](../02-docker-ratings.md#portable) | [Subfolder](../02-docker-ratings.md#subfolder) |
 > | ----- | --- | --------- | -------- | -------- |
-> | ❌     | ✅  | ❌👪       | ✅        | ❌ |
-
+> | ❌*     | ✅  | ❌👪       | ✅        | ❌ |
+https://docs.seerr.dev/
 ## Install
+```yaml
+services:
+  seerr:
+    image: ghcr.io/seerr-team/seerr:latest
+    init: true
+    container_name: seerr
+    environment:
+      - LOG_LEVEL=info
+      - TZ=America/Vancouver
+      - PORT=5055
+    ports:
+      - 5055:5055
+    volumes:
+      - seerr_data:/app/config
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:5055/api/v1/status || exit 1
+      start_period: 20s
+      timeout: 3s
+      interval: 15m
+      retries: 3
+    restart: unless-stopped
+
+volumes:
+  seerr_data:
+    name: seerr_data
+```
+
+- Docker volumes used for permission
+- changed healthcheck intervals
 ## Usage
 Follow the onboarding process
 - Jellyfin settings
@@ -34,24 +63,23 @@ If a movie exists in Jellyfin, but has been deleted from disk
 - it will be of status `deleted` on the next scan
 
 However to trigger a `deleted` status on movie not available in the library (e.g. for watched media tracking), workaround
-- make a request in Seerr (get the media ID (not the same as TMDB ID))
-- make it as available
-- TODO: automatic script that remove such request in Radarr since it's not a real request
-- manually run availability sync
-- **it's not possible to change the date of the request**
-- **this workaround makes the requests persistent, cannot be remove**
-	- to workaround this, filter request to `Unavailable` instead of `All`
 
 Alternative Approach: database?
 - better to update the DB
-- **requires docker cp and full restart**
+- **requires docker cp and full restart** (stop/start, restart is not sufficient)
+- `/app/config/db/db.sqlite3`
+
+```sql
+insert into media (mediaType,tmdbId,status,createdAt,updatedAt,lastSeasonChange,mediaAddedAt) values ("movie",347375,7,"2023-01-01 00:00:00","2023-01-01 00:00:00","2023-01-01 00:00:00","2023-01-01 00:00:00");
+```
+```sql
+insert into media (mediaType,tmdbId,status,createdAt,updatedAt,lastSeasonChange,mediaAddedAt) select "movie",7444,7,"2023-01-01 00:00:00","2023-01-01 00:00:00","2023-01-01 00:00:00","2023-01-01 00:00:00" WHERE NOT EXISTs (SELECT 1 FROM media WHERE tmdbId=7444);
+```
+
+- parameters: `tmdbId`, date it was watched (use for all 4)
+- the 2nd SQL do not insert new value if a key already exist
 ### States
 ![](assets/Pasted%20image%2020260313004312.png)
-
-Watchlist
-Requested (default requires confirmation)
-Approved Request (configurable)
-Available
 
 On these events, notifications can be sent, some useful ones include
 - pending requests (manual or auto approved)
@@ -91,15 +119,41 @@ SEERR_API_KEY=""
 RADARR_API_KEY=""
 ```
 
-Automatically delete watchlist items (admin only) once a movie is available, `seerr.py`
+Automatically delete watchlist items (admin only) and requests once a movie is available, `seerr.py`
 - movies that are in watchlist still persist even when it became available
 - delete these from watchlist once available
 
 Unmonitor movies in Radarr for requests of specific tags `added.py`
 - by default, when Seerr requests, it will be added as monitored
 - scripts will trigger on Radarr movie add and change these to unmonitored, but only if `manual` tag has been applied
+
+From [yamtrack](yamtrack.md), import all tracked items as Seerr deleted (status 7)
+- use `yamtrack2seerr.py`
+
 ## Backup Restore Upgrade
-### Additional Backups
+Backing up the volume, specifically the `db.sqlite3` which contains everything.
+```bash
+docker run --rm -v seerr_data:/data   -v $(pwd)/seerr_data:/backup busybox   /bin/sh -c "tar -czvf /backup/seerr_data.tar.gz /data; chown -R ${PUID}:${PGID} /backup"
+```
+The result folder structure
+```
+./seerr_data/seerr_data.tar.gz
+```
+### Restore
+```bash
+docker run --rm -v seerr_data:/data -v $(pwd)/seerr_data:/backup busybox /bin/sh -c "tar xvf /backup/seerr_data.tar.gz -C /data --strip-components=1; chown -R 1000:1000 /data"
+```
+
+- the `strip-components=1` ensure data is saved to `/data/*` not `/data/data/*` which is require for Seerr to function
+- Seerr requires `1000` for UID and GID
+### Update
+```bash
+docker compose pull
+docker compose up -d
+docker image prune -f
+```
 ## Deployment
-### Reverse Proxy
 Seerr do not support base URL for reverse proxying, a subdomain is needed.
+Seerr do not support Authelia or OIDC as of now. Only Jellyfin accounts are allowed.
+The process for Nginx Proxy Manager is the same. However, change this after running the site in HTTPS
+- `General` > `Application URL`
